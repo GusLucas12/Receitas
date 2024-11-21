@@ -1,4 +1,4 @@
-main {
+.main {
 
     background-image: url('../images/image1.png');
     background-repeat: no-repeat;
@@ -9,5 +9,5 @@ main {
     /* Posiciona a imagem no centro */
     background-attachment: fixed;
     /* A imagem fica fixa quando você rola a página */
-    height: 757px;
+    height: 775px;
 }
