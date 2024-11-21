@@ -1,7 +1,13 @@
 import header from "../components/cabeca";
-function Home (){
-    return(
-        <h1>Oi</h1>
+import styles from './home.module.css';
+function Home() {
+    return (
+        <div className={styles.main}>
+            <main >
+                Cade essa imagem
+            </main>
+        </div>
+
     )
 }
 export default Home;

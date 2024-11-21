@@ -1,0 +1,13 @@
+main {
+
+    background-image: url('../images/image1.png');
+    background-repeat: no-repeat;
+    /* Impede a repetição da imagem */
+    background-size: cover;
+    /* Faz a imagem cobrir todo o elemento */
+
+    /* Posiciona a imagem no centro */
+    background-attachment: fixed;
+    /* A imagem fica fixa quando você rola a página */
+    height: 757px;
+}
