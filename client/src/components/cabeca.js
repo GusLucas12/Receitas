@@ -6,14 +6,16 @@ function Top() {
             <header>
                 <div className={styles.interface}>
                     <div className={styles.texto}>
-                        <h1>Receitas++</h1>
+                        <Link to='/'> <h1>Receitas++</h1></Link>
+                       
 
                     </div>
 
 
                     <div className={styles.botao}>
                         <a href="#suas-receitas">Suas <br></br>receitas</a>
-                        <a href="#descubra-receitas">Descubra<br></br> Receitas</a>
+                        <Link to='/busca'><h1>Descubra<br></br> Receitas</h1></Link>
+                        
                         <a href="#placeholder">Place <br></br>Holder</a>
                         <a href="#sua-conta">Sua <br></br>Conta</a>
                         <div className={styles.user}>
