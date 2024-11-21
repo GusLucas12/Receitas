@@ -1,13 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
-import Top from './components/Top';
-
+import Top from './components/cabeca';
+import { Routes,Route } from 'react-router-dom';
+import Home from './pages/index';
 function App() {
   return (
 
     <div className="App">
-      <Top></Top>
-      <p>Vamos fazer Receitas</p>
+      <Top></Top>s
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+      </Routes>
+   
     </div>
   );
 }
