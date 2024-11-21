@@ -1,5 +1,8 @@
 .main {
-
+    display: flex;
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
     background-image: url('../images/image1.png');
     background-repeat: no-repeat;
     /* Impede a repetição da imagem */
@@ -11,3 +14,79 @@
     /* A imagem fica fixa quando você rola a página */
     height: 775px;
 }
+
+.box {
+    display: flex;
+    flex-direction: column;
+    /* Posiciona os elementos verticalmente */
+    justify-content: center;
+    /* Centraliza verticalmente */
+    align-items: center;
+    /* Centraliza horizontalmente */
+    text-align: center;
+    /* Alinha o texto */
+    color: white;
+    /* Ajusta a cor do texto para branco */
+    background-color: black;
+    opacity: 0.6;
+    height: 506px;
+    width: 1163px;
+    border-radius: 20px;
+}
+
+.box h1 {
+    font-family: "Galada", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 126px;
+    color: white;
+}
+
+.box h2 {
+    color: white;
+    font-size: 64px;
+    margin-top: -120px;
+} 
+
+
+
+ 
+  
+  /* Formulário */
+  .form {
+    margin-top: 20px;
+    width: 1163;
+    height: 67;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo translúcido */
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Input */
+  .input {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-family: inherit;
+    color: #333;
+  }
+  
+  /* Botão de busca */
+  .button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    padding: 0 15px;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .button:hover {
+    color: #007BFF;
+  }  
+ 
