@@ -32,7 +32,37 @@ function Busca() {
                     </form>
                 </div>
                 <div className={styles.telaDeBusca}>
-                    Oi
+                    <div className={styles.titulo}>
+                        <h1>Titulo da Receita</h1>
+                    </div>
+                    <div className={styles.corpo}>
+                        <div className={styles.informacoes}>
+                            <h1>Tempo De Preparo: </h1>
+
+                            <h1>Dificuldade: </h1>
+                        </div>
+                        <div className={styles.ingredientesEModo}>
+                            <div className={styles.Ingredientes}>
+                                <h2>Ingredientes:</h2>
+                                <ul>
+                                    <li>2 Ovos</li>
+                                    <li>1 Colher de Manteiga</li>
+                                    <li>1 Colher de Farinha</li>
+                                    <li>1 Colher de Achocolatado</li>
+                                </ul>
+                            </div>
+                            <div className={styles.modoDePreparo}>
+                                <h2>Modo de Preparo:</h2>
+                                <ol>
+                                    <li>Quebre o ovo</li>
+                                    <li>Misture o ovo</li>
+                                    <li>Misture a farinha</li>
+                                    <li>Misture o achocolatado</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
