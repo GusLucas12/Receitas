@@ -24,18 +24,22 @@ header>.interface {
 }
 
 .texto h1 {
+    color: #000000;
+    text-decoration: none;
     font-family: "Galada", cursive;
     font-weight: 400;
     font-style: normal;
     cursor: pointer;
     font-style: normal;
     font-size: 32px;
-    color: #000000;
-    text-decoration: none;
+ 
     transition: all 0.3s ease 0s;
 
 }
-
+.custom_link {
+    text-decoration: none;
+    color: inherit;
+  }
 .app {
     color: #b60101;
 }
@@ -45,6 +49,8 @@ header>.interface {
 }
 
 .botao {
+    text-decoration: none; /* Remove o sublinhado */
+    color: inherit; 
     display: flex;
     align-items: center;
     gap: 30px;
@@ -62,7 +68,7 @@ header>.interface {
     color: #e63946;
     /* Vermelho para links */
     font-weight: bold;
-
+    
 }
 
 .botao a:hover {

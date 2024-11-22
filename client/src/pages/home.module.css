@@ -1,32 +1,27 @@
 .main {
     display: flex;
     justify-content: center;
-    /* Centraliza horizontalmente */
+    flex-direction: column;
     align-items: center;
     background-image: url('../images/image1.png');
     background-repeat: no-repeat;
-    /* Impede a repetição da imagem */
     background-size: cover;
-    /* Faz a imagem cobrir todo o elemento */
-
-    /* Posiciona a imagem no centro */
     background-attachment: fixed;
-    /* A imagem fica fixa quando você rola a página */
     height: 775px;
 }
 
 .box {
     display: flex;
     flex-direction: column;
-    /* Posiciona os elementos verticalmente */
+
     justify-content: center;
-    /* Centraliza verticalmente */
+
     align-items: center;
-    /* Centraliza horizontalmente */
+
     text-align: center;
-    /* Alinha o texto */
+
     color: white;
-    /* Ajusta a cor do texto para branco */
+
     background-color: black;
     opacity: 0.6;
     height: 506px;
@@ -52,20 +47,20 @@
 
  
   
-  /* Formulário */
+
   .form {
     margin-top: 20px;
     width: 1163;
     height: 67;
     display: flex;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.8); /* Fundo translúcido */
+    background-color: rgba(255, 255, 255, 0.8); 
     border-radius: 25px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
-  /* Input */
+
   .input {
     flex: 1;
     padding: 12px 20px;
@@ -76,7 +71,7 @@
     color: #333;
   }
   
-  /* Botão de busca */
+ 
   .button {
     background: none;
     border: none;

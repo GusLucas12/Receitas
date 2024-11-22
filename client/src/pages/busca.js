@@ -31,6 +31,9 @@ function Busca() {
                     </button>
                 </form>
             </div>
+            <div className={styles.telaDeBusca}>
+                Oi
+            </div>
         </div>
     )
 }
