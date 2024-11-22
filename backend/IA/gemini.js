@@ -6,10 +6,12 @@ const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 async function askTheQuestion(promptText) {
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-  const result = await model.generateContent(prompt);
+  const result = await model.generateContent(promptText);
   const response = await result.response;
   const text = response.text();
   console.log(text);
 }
 
-export default askTheQuestion;
+
+
+askTheQuestion("quantos anos vc tem?")
