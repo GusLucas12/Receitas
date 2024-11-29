@@ -26,6 +26,7 @@ npm start
 
 
 ### 📁 Estrutura do Projeto
+```plaintext
 Receitas/
 ├── public/                 # Arquivos estáticos
 │   ├── index.html          # Ponto de entrada HTML
@@ -39,3 +40,4 @@ Receitas/
 │   └── styles/             # Estilização global
 ├── package.json            # Configuração do projeto e dependências
 └── README.md               # Documentação do projeto
+```  
