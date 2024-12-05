@@ -16,7 +16,13 @@ function Busca() {
     }, [initialRecipe]);
 
     const fetchRecipe = async (query) => {
-        const text = `me de uma receita de ${query}, se limite a apenas uma receita por vez , todas as respostas precisam estar relacionadas a receitas, priorizando as brasileiras tradicionais e receitas internacionais amplamente conhecidas. As respostas devem ser apresentadas exclusivamente no formato Markdown. Sempre formate as respostas com nome, tempo de preparo, dificuldade (Fácil, Média e Difícil) e ingredientes. Formate o texto para sempre aparecer no centro da tela porem com a formatação mais à esquerda`;
+        const text = `me de uma receita de ${query}, se limite a apenas uma receita por vez , 
+        todas as respostas precisam estar relacionadas a receitas, priorizando as brasileiras 
+        tradicionais e receitas internacionais amplamente conhecidas. As respostas devem ser apresentadas
+        exclusivamente no formato Markdown. Sempre formate as respostas com nome, tempo de preparo, 
+        dificuldade (Fácil, Média e Difícil) e ingredientes, tente me dar opções sustentáveis do que fazer 
+        com sobras e cascas de ingredientes, e me sugestões de coisas sustentáveis . Formate o texto para sempre aparecer no 
+        centro da tela porem com a formatação mais à esquerda`;
 
         try {
             const response = await fetch("https://backend-engsoft.onrender.com/askthequestion", {
