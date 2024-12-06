@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { marked } from "marked";
 import styles from './busca.module.css';
 
 function Busca() {
     const [searchParams] = useSearchParams();
-    const initialRecipe = searchParams.get("query") || ""; 
-    const [recipe, setRecipe] = useState(initialRecipe); 
-    const [markdown, setMarkdown] = useState(""); 
+    const initialRecipe = searchParams.get("query") || "";
+    const [recipeQuery, setRecipeQuery] = useState(initialRecipe);
+    const [recipeData, setRecipeData] = useState(null);
+    const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
         if (initialRecipe) {
-            fetchRecipe(initialRecipe); 
+            fetchRecipe(initialRecipe);
         }
     }, [initialRecipe]);
 
@@ -19,10 +19,8 @@ function Busca() {
         const text = `me de uma receita de ${query}, se limite a apenas uma receita por vez , 
         todas as respostas precisam estar relacionadas a receitas, priorizando as brasileiras 
         tradicionais e receitas internacionais amplamente conhecidas. As respostas devem ser apresentadas
-        exclusivamente no formato Markdown. Sempre formate as respostas com nome, tempo de preparo, 
-        dificuldade (Fácil, Média e Difícil) e ingredientes, tente me dar opções sustentáveis do que fazer 
-        com sobras e cascas de ingredientes, e me sugestões de coisas sustentáveis . Formate o texto para sempre aparecer no 
-        centro da tela porem com a formatação mais à esquerda`;
+        exclusivamente no formato JSON. Sempre formate as respostas com nome, tempo_de_preparo, 
+        dificuldade (Fácil, Média e Difícil), ingredientes(ingrediente , quantidade), e passos. `;
 
         try {
             const response = await fetch("https://backend-engsoft.onrender.com/askthequestion", {
@@ -33,20 +31,33 @@ function Busca() {
                 body: JSON.stringify({ text })
             });
 
-            const textResponse = await response.text();
-            setMarkdown(textResponse); 
+            let rawText = await response.text();
+
+            // Remove ```json e ``` do texto antes de processar
+            rawText = rawText.replace(/```json|```/g, "").trim();
+
+            const jsonResponse = JSON.parse(rawText); // Analisa o JSON limpo
+            setRecipeData(jsonResponse); // Salva os dados da receita
         } catch (error) {
-            console.error("Erro:", error);
+            console.error("Erro ao buscar a receita:", error);
         }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (recipe) {
-            fetchRecipe(recipe); 
+        if (recipeQuery) {
+            fetchRecipe(recipeQuery);
         } else {
             alert("Por favor, insira uma receita!");
         }
+    };
+
+    const handleAddToFavorites = () => {
+        setShowPopup(true);
+    };
+
+    const closePopup = () => {
+        setShowPopup(false);
     };
 
     return (
@@ -57,8 +68,8 @@ function Busca() {
                         <input
                             type="text"
                             placeholder="Digite o nome da receita..."
-                            value={recipe}
-                            onChange={(e) => setRecipe(e.target.value)}
+                            value={recipeQuery}
+                            onChange={(e) => setRecipeQuery(e.target.value)}
                             className={styles.input}
                         />
                         <button type="submit" className={styles.button}>
@@ -66,15 +77,60 @@ function Busca() {
                         </button>
                     </form>
                 </div>
+
                 <div className={styles.telaDeBusca}>
-                    {markdown && (
-                        <div
-                            className={styles.markdown}
-                            dangerouslySetInnerHTML={{ __html: marked(markdown) }}
-                        ></div>
+                    {recipeData && (
+                        <>
+                            <button
+                                onClick={handleAddToFavorites}
+                                className={styles.favoriteButton}
+                            >
+                                ⭐
+                            </button>
+
+                            <div className={styles.recipeDetails}>
+                                <h1>{recipeData.nome}</h1>
+                                <div className={styles.}>
+
+                                </div>
+                                <p><strong>Tempo de preparo:</strong> {recipeData.tempo_preparo}</p>
+                                <p><strong>Dificuldade:</strong> {recipeData.dificuldade}</p>
+                               
+                                <h3>Ingredientes:</h3>
+                                <ul>
+                                    {recipeData.ingredientes.map((item, index) => (
+                                        <li key={index}>
+                                            {item.ingrediente} - {item.quantidade}
+                                        </li>
+                                    ))}
+                                </ul>
+                                <h3>Passos:</h3>
+                                <ol>
+                                    {recipeData.passos.map((passo, index) => (
+                                        <li key={index}>{passo}</li>
+                                    ))}
+                                </ol>
+                            </div>
+                        </>
                     )}
                 </div>
             </div>
+
+            {showPopup && (
+                <div className={styles.popup}>
+                    <div className={styles.popupContent}>
+                        <button className={styles.closeButton} onClick={closePopup}>✖</button>
+                        <h2>Adicionar aos Favoritos</h2>
+                        <input
+                            type="text"
+                            value={recipeData?.titulo || ""}
+                            readOnly
+                            className={styles.popupInput}
+                        />
+                        <button className={styles.saveButton}>Salvar</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
