@@ -80,15 +80,34 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
-   
+    gap:500px;
+    font-size: 36px;
+    border-bottom: 1px solid #e63946 ;
 
+}
+.recipeContext span{
+  color:#000000;
 }
 .telaDeBusca {
   position: relative;
   /* Necessário para posicionamento do botão */
   padding: 20px;
 }
-
+.ingredientes{
+  
+  font-size: 36px;
+  border-bottom: 1px solid #e63946 ;
+}
+.ingredientes ul{
+  color:#000000;
+}
+.passos{
+  font-size: 36px;
+  border-bottom: 1px solid #e63946 ;
+}
+.passos ol{
+  color:#000000;
+}
 .favoriteButton {
   position: absolute;
   top: 10px;

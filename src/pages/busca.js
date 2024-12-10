@@ -33,11 +33,11 @@ function Busca() {
 
             let rawText = await response.text();
 
-            // Remove ```json e ``` do texto antes de processar
+
             rawText = rawText.replace(/```json|```/g, "").trim();
 
-            const jsonResponse = JSON.parse(rawText); // Analisa o JSON limpo
-            setRecipeData(jsonResponse); // Salva os dados da receita
+            const jsonResponse = JSON.parse(rawText);
+            setRecipeData(jsonResponse);
         } catch (error) {
             console.error("Erro ao buscar a receita:", error);
         }
@@ -90,26 +90,30 @@ function Busca() {
 
                             <div className={styles.recipeDetails}>
                                 <h1>{recipeData.nome}</h1>
-                                <div className={styles.}>
-
+                                <div className={styles.recipeContext}>
+                                    <p><strong>Tempo de preparo:</strong> <span>{recipeData.tempo_de_preparo}</span> </p>
+                                    <p><strong>Dificuldade:</strong> <span> {recipeData.dificuldade} </span></p>
                                 </div>
-                                <p><strong>Tempo de preparo:</strong> {recipeData.tempo_preparo}</p>
-                                <p><strong>Dificuldade:</strong> {recipeData.dificuldade}</p>
-                               
-                                <h3>Ingredientes:</h3>
-                                <ul>
-                                    {recipeData.ingredientes.map((item, index) => (
-                                        <li key={index}>
-                                            {item.ingrediente} - {item.quantidade}
-                                        </li>
-                                    ))}
-                                </ul>
-                                <h3>Passos:</h3>
-                                <ol>
-                                    {recipeData.passos.map((passo, index) => (
-                                        <li key={index}>{passo}</li>
-                                    ))}
-                                </ol>
+
+                                <div className={styles.ingredientes}>
+                                    <h3>Ingredientes:</h3>
+                                    <ul>
+                                        {recipeData.ingredientes.map((item, index) => (
+                                            <li key={index}>
+                                                {item.ingrediente} - {item.quantidade}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className={styles.passos}>
+                                    <h3>Passos:</h3>
+                                    <ol>
+                                        {recipeData.passos.map((passo, index) => (
+                                            <li key={index}>{passo}</li>
+                                        ))}
+                                    </ol>
+                                </div>
+
                             </div>
                         </>
                     )}
