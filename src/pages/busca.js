@@ -106,14 +106,14 @@ function Busca() {
                                     </ul>
                                 </div>
                                 <div className={styles.passos}>
-                                    <h3>Passos:</h3>
-                                    <ol>
-                                        {recipeData.passos.map((passo, index) => (
-                                            <li key={index}>{passo}</li>
-                                        ))}
-                                    </ol>
+                                <h3>Passos:</h3>
+                                <ol>
+                                    {recipeData.passos.map((passo, index) => (
+                                        <li key={index}>{passo}</li>
+                                    ))}
+                                </ol>
                                 </div>
-
+                                
                             </div>
                         </>
                     )}
@@ -127,7 +127,7 @@ function Busca() {
                         <h2>Adicionar aos Favoritos</h2>
                         <input
                             type="text"
-                            value={recipeData?.titulo || ""}
+                            value={recipeData.nome}
                             readOnly
                             className={styles.popupInput}
                         />
