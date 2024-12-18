@@ -90,9 +90,7 @@ function Busca() {
 
                             <div className={styles.recipeDetails}>
                                 <h1>{recipeData.nome}</h1>
-                                <div className={styles.}>
-
-                                </div>
+                               
                                 <p><strong>Tempo de preparo:</strong> {recipeData.tempo_preparo}</p>
                                 <p><strong>Dificuldade:</strong> {recipeData.dificuldade}</p>
                                
@@ -123,7 +121,7 @@ function Busca() {
                         <h2>Adicionar aos Favoritos</h2>
                         <input
                             type="text"
-                            value={recipeData?.titulo || ""}
+                            value={recipeData.nome}
                             readOnly
                             className={styles.popupInput}
                         />

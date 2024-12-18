@@ -1,87 +1,129 @@
+/* Configuração principal */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
 .main {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    background-image: url('../images/image1.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    height: 775px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('../images/image1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh; /* Adaptação para altura dinâmica */
+  width: 100vw; /* Adaptação para largura da viewport */
 }
 
+/* Estilo da caixa central */
 .box {
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    text-align: center;
-
-    color: white;
-
-    background-color: black;
-    opacity: 0.6;
-    height: 506px;
-    width: 1163px;
-    border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6); /* Usar RGBA para transparência */
+  padding: 20px;
+  border-radius: 20px;
+  width: 90%; /* Adaptação para telas menores */
+  max-width: 1163px; /* Limite para telas maiores */
+  margin: 20px auto;
 }
+
 
 .box h1 {
-    font-family: "Galada", cursive;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 126px;
-    color: white;
+  font-family: "Galada", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 7vw; 
 }
 
 .box h2 {
-    color: white;
-    font-size: 64px;
-    margin-top: -120px;
-} 
+  color: white;
+  font-size: 4vw; 
+  margin-top: -4rem;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form {
+  margin-top: 20px;
+  width: 90%; 
+  max-width: 1163px; 
+  height: auto; 
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8); 
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+.input {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #333;
+}
 
 
+.button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  padding: 0 15px;
+  cursor: pointer;
+  color: #333;
+}
 
- 
-  
+.button:hover {
+  color: #007BFF;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .box h1 {
+      font-size: 8vw;
+  }
+
+  .box h2 {
+      font-size: 5vw;
+  }
 
   .form {
-    margin-top: 20px;
-    width: 1163;
-    height: 67;
-    display: flex;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.8); 
-    border-radius: 25px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      flex-direction: column; /* Ajuste para telas muito estreitas */
+      padding: 15px;
   }
-  
+
+  .button {
+      width: 100%;
+      padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .box {
+      padding: 15px;
+  }
+
+  .box h1, .box h2 {
+      margin-top: 0;
+  }
 
   .input {
-    flex: 1;
-    padding: 12px 20px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    font-family: inherit;
-    color: #333;
+      font-size: 0.9rem;
   }
-  
- 
-  .button {
-    background: none;
-    border: none;
-    font-size: 18px;
-    padding: 0 15px;
-    cursor: pointer;
-    color: #333;
-  }
-  
-  .button:hover {
-    color: #007BFF;
-  }  
- 
+}
