@@ -13,7 +13,7 @@ function Top() {
 
 
                     <div className={styles.botao}>
-                        <h1>Suas <br></br>receitas</h1>
+                        <Link to='/receitas' className={styles.custom_link}><h1>Suas <br></br>receitas</h1></Link> 
                         <Link to='/busca' className={styles.custom_link}><h1>Descubra<br></br> Receitas</h1></Link>
 
                         <h1>Place <br></br>Holder</h1>

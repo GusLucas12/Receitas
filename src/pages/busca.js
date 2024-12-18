@@ -33,11 +33,11 @@ function Busca() {
 
             let rawText = await response.text();
 
-            // Remove ```json e ``` do texto antes de processar
+
             rawText = rawText.replace(/```json|```/g, "").trim();
 
-            const jsonResponse = JSON.parse(rawText); // Analisa o JSON limpo
-            setRecipeData(jsonResponse); // Salva os dados da receita
+            const jsonResponse = JSON.parse(rawText);
+            setRecipeData(jsonResponse);
         } catch (error) {
             console.error("Erro ao buscar a receita:", error);
         }
@@ -90,6 +90,7 @@ function Busca() {
 
                             <div className={styles.recipeDetails}>
                                 <h1>{recipeData.nome}</h1>
+<<<<<<< HEAD
                                
                                 <p><strong>Tempo de preparo:</strong> {recipeData.tempo_preparo}</p>
                                 <p><strong>Dificuldade:</strong> {recipeData.dificuldade}</p>
@@ -102,12 +103,32 @@ function Busca() {
                                         </li>
                                     ))}
                                 </ul>
+=======
+                                <div className={styles.recipeContext}>
+                                    <p><strong>Tempo de preparo:</strong> <span>{recipeData.tempo_de_preparo}</span> </p>
+                                    <p><strong>Dificuldade:</strong> <span> {recipeData.dificuldade} </span></p>
+                                </div>
+
+                                <div className={styles.ingredientes}>
+                                    <h3>Ingredientes:</h3>
+                                    <ul>
+                                        {recipeData.ingredientes.map((item, index) => (
+                                            <li key={index}>
+                                                {item.ingrediente} - {item.quantidade}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className={styles.passos}>
+>>>>>>> 9f6b95dfca6dc4f5e5d2877c0767e5299134a9cc
                                 <h3>Passos:</h3>
                                 <ol>
                                     {recipeData.passos.map((passo, index) => (
                                         <li key={index}>{passo}</li>
                                     ))}
                                 </ol>
+                                </div>
+                                
                             </div>
                         </>
                     )}

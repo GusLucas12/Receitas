@@ -1,7 +1,9 @@
 import header from "../components/cabeca";
+
 import styles from './home.module.css';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Importe o useNavigate
+
 
 function Home() {
     const [recipe, setRecipe] = useState("");
