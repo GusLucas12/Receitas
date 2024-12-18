@@ -90,20 +90,6 @@ function Busca() {
 
                             <div className={styles.recipeDetails}>
                                 <h1>{recipeData.nome}</h1>
-<<<<<<< HEAD
-                               
-                                <p><strong>Tempo de preparo:</strong> {recipeData.tempo_preparo}</p>
-                                <p><strong>Dificuldade:</strong> {recipeData.dificuldade}</p>
-                               
-                                <h3>Ingredientes:</h3>
-                                <ul>
-                                    {recipeData.ingredientes.map((item, index) => (
-                                        <li key={index}>
-                                            {item.ingrediente} - {item.quantidade}
-                                        </li>
-                                    ))}
-                                </ul>
-=======
                                 <div className={styles.recipeContext}>
                                     <p><strong>Tempo de preparo:</strong> <span>{recipeData.tempo_de_preparo}</span> </p>
                                     <p><strong>Dificuldade:</strong> <span> {recipeData.dificuldade} </span></p>
@@ -120,7 +106,6 @@ function Busca() {
                                     </ul>
                                 </div>
                                 <div className={styles.passos}>
->>>>>>> 9f6b95dfca6dc4f5e5d2877c0767e5299134a9cc
                                 <h3>Passos:</h3>
                                 <ol>
                                     {recipeData.passos.map((passo, index) => (
