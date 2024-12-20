@@ -1,20 +1,22 @@
-import Card from 'react-bootstrap/Card';
-import 'bootstrap/dist/css/bootstrap.min.css';
-function Cardi() {
-    return (
-        <Card style={{ width: '18rem' }}>
-            <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-                <Card.Text>
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                </Card.Text>
-                <Card.Link href="#">Card Link</Card.Link>
-                <Card.Link href="#">Another Link</Card.Link>
-            </Card.Body>
-        </Card>
-    )
+import styles from './card.module.css';
+function Card() {
+    <div>
+        <div className={styles.card}>
+            <div className={styles.titulo}>
+                <h2> Place Holder</h2>
+                <button className={styles.trashButton} title='apagar'>🗑️</button>
+            </div>
+            <div className={styles.text}>
+                <p>
+                    <strong>Tempo de Preparo:</strong>
+                </p>
+                <p>
+                    <strong>Dificuldade:</strong>
+                </p>
+            </div>
+
+        </div>
+    </div>
 }
 
-export default Cardi;
+export default Card;
