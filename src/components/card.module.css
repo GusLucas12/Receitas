@@ -2,12 +2,13 @@
     background-color: #e63946;
     border: 2px solid #000000;
     border-radius: 20px;
-    max-width: 420px;
-    min-height: 346px;
+    min-width: 420px; /* Largura fixa */
+    min-height: 346px; 
     margin: 10px;
     margin-left: 36px ;
     font-family: 'Playfair Display';
     font-style: normal;
+    
 }
 .titulo{
     display: flex;

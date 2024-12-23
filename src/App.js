@@ -18,7 +18,7 @@ function App() {
         <Route path='/receitas' element={<Receitas/>}/>
         
       </Routes>
-      <Footer/>
+   
     </div>
     
   );

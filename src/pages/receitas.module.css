@@ -1,37 +1,61 @@
-.card{
-    background-color: #e63946;
-    border: 2px solid #000000;
+.main {
+    background-color: #D2B48C;
+    min-height: 886px;
+    width: 100%;
+    overflow: auto;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha os itens ao canto esquerdo */
+    padding: 20px;
+    gap: 20px;
+}
+
+.title {
+    text-align: start;
+    font-size: 36px;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-family: 'Playfair Display', serif;
+    color: #e63946;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1280px;
+    border-bottom: 1px solid #e63946;
+}
+
+
+.cardsRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    width: 100%;
+    max-width: 1280px;
+    justify-items: center;
+    margin-bottom: 28px;
+}
+
+.cardAdd {
+    background-color: #f0f0f0;
+    border: 2px dashed #000000;
     border-radius: 20px;
     max-width: 420px;
     min-height: 346px;
-    margin: 10px;
-    margin-left: 36px ;
-    font-family: 'Playfair Display';
-    font-style: normal;
-}
-.titulo{
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    position: relative;
-}
-.titulo h2{
-    margin: 0;
+    font-family: 'Playfair Display';
     font-size: 48px;
-}
-.trashButton{
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    font-size: 1.2em;
+    font-style: normal;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out;
 }
-.text{
-    padding-top: 50px;
-    margin: 8px 0;
-    font-size: 24px;
+
+.cardAdd:hover {
+    transform: scale(1.05);
+    background-color: #dcdcdc;
 }
+
+
