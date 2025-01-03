@@ -125,3 +125,21 @@ select {
   .btnDelete:hover span{
     color: #fff;
   }
+  .saveBtnRow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .saveButton{
+    min-width: 191px;
+    max-width: 200px;
+    height: 61px;
+    background-color: #e63946;
+    border-radius: 30px;
+    font-size: 40px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .saveButton:hover{
+    transform: scale(1.1);
+  }

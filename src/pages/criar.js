@@ -5,7 +5,6 @@ function Criar() {
     const [ingredients, setIngredients] = useState([{ id: 1, quantidade: "", ingrediente: "" }]);
     const [steps, setSteps] = useState([{ id: 1, descricao: "" }]);
 
-    // Funções para adicionar
     const addIngredient = () => {
         setIngredients([...ingredients, { id: Date.now(), quantidade: "", ingrediente: "" }]);
     };
@@ -14,7 +13,6 @@ function Criar() {
         setSteps([...steps, { id: Date.now(), descricao: "" }]);
     };
 
-    // Funções para deletar
     const handleDeleteIngredient = (id) => {
         setIngredients(ingredients.filter((ingredient) => ingredient.id !== id));
     };
@@ -23,7 +21,6 @@ function Criar() {
         setSteps(steps.filter((step) => step.id !== id));
     };
 
-    // Funções para atualizar os valores
     const handleIngredientChange = (id, field, value) => {
         setIngredients(ingredients.map((ingredient) =>
             ingredient.id === id ? { ...ingredient, [field]: value } : ingredient
@@ -36,12 +33,38 @@ function Criar() {
         ));
     };
 
+    const handleSave = () => {
+        const titulo = document.getElementById("titulo").value.trim();
+        const tempoPreparo = document.getElementById("tempoPreparo").value.trim();
+        const dificuldade = document.getElementById("dificuldade").value;
+        const hasEmptyIngredient = ingredients.some(
+            (ingredient) => !ingredient.quantidade.trim() || !ingredient.ingrediente.trim()
+        );
+        const hasEmptyStep = steps.some((step) => !step.descricao.trim());
+    
+        if (!titulo || !tempoPreparo || hasEmptyIngredient || hasEmptyStep) {
+            alert("Preencha todos os campos antes de salvar!");
+            return;
+        }
+    
+        // Salvar a receita se todos os campos estiverem preenchidos
+        const data = {
+            titulo,
+            tempoPreparo,
+            dificuldade,
+            ingredientes: ingredients.map((ing) => `(${ing.quantidade} ${ing.ingrediente})`).join(" "),
+            passos: steps.map((step, index) => `${index + 1}. ${step.descricao}`).join("\n"),
+        };
+    
+        console.log("Dados salvos:", data);
+        alert(`Receita salva com sucesso!\n\nTítulo: ${data.titulo}\nTempo de Preparo: ${data.tempoPreparo}\nDificuldade: ${data.dificuldade}\nIngredientes: ${data.ingredientes}\nPassos:\n${data.passos}`);
+    };
+
     return (
         <div>
             <div className={styles.container}>
                 <h1>Crie sua receita</h1>
                 <div className={styles.form}>
-                    {/* Informações gerais */}
                     <div className={styles.formGroup}>
                         <label>Título</label>
                         <input id="titulo" type="text" placeholder="Digite o Título" />
@@ -61,12 +84,10 @@ function Criar() {
                         </div>
                     </div>
 
-                    
                     <div className={styles.formGroup}>
                         <label>Ingredientes</label>
                         {ingredients.map((ingredient) => (
                             <div key={ingredient.id} className={styles.ingredientRow}>
-                               
                                 <input
                                     type="text"
                                     placeholder="Quantidade"
@@ -87,7 +108,7 @@ function Criar() {
                                     className={styles.btnDelete}
                                     onClick={() => handleDeleteIngredient(ingredient.id)}
                                 >
-                                 <span> ❌</span> 
+                                    <span>❌</span>
                                 </button>
                             </div>
                         ))}
@@ -100,10 +121,9 @@ function Criar() {
                         </button>
                     </div>
 
-                  
                     <div className={styles.formGroup}>
                         <label>Passos</label>
-                        {steps.map((step,index) => (
+                        {steps.map((step, index) => (
                             <div key={step.id} className={styles.stepRow}>
                                 <span className={styles.stepCounter}>{index + 1}.</span>
                                 <input
@@ -118,7 +138,7 @@ function Criar() {
                                     className={styles.btnDelete}
                                     onClick={() => handleDeleteStep(step.id)}
                                 >
-                                  <span> ❌</span> 
+                                    <span>❌</span>
                                 </button>
                             </div>
                         ))}
@@ -130,6 +150,16 @@ function Criar() {
                             <span>+</span>
                         </button>
                     </div>
+                    <div className={styles.saveBtnRow}>
+                        <button
+                            type="button"
+                            onClick={handleSave}
+                            className={styles.saveButton}
+                        >
+                            Salvar
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </div>

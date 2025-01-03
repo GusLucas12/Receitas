@@ -41,7 +41,7 @@
     background-color: #f0f0f0;
     border: 2px dashed #000000;
     border-radius: 20px;
-    max-width: 420px;
+    min-width: 420px;
     min-height: 346px;
     display: flex;
     justify-content: center;
