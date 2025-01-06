@@ -17,9 +17,9 @@ function Top() {
                         <Link to='/busca' className={styles.custom_link}><h1>Descubra<br></br> Receitas</h1></Link>
 
                         <h1>Place <br></br>Holder</h1>
-                        <h1>Sua <br></br>Conta</h1>
+                        <Link to='/usuario' className={styles.custom_link}> <h1>Sua <br></br>Conta</h1> </Link> 
                         <div className={styles.user}> 
-                            <span>👤</span>
+                          <Link to='/usuario' className={styles.custom_link}> <span>👤</span> </Link> 
                         </div>
                     </div>
 

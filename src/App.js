@@ -7,6 +7,7 @@ import Home from './pages/index';
 import Busca from './pages/busca';
 import Receitas from './pages/receitas';
 import Criar from './pages/criar';
+import Usuario from './pages/usuario';
 function App() {
   return (
 
@@ -18,6 +19,7 @@ function App() {
         <Route path='/busca' element={<Busca/>}/>
         <Route path='/receitas' element={<Receitas/>}/>
         <Route path='/criar' element={<Criar/>}/>
+        <Route path='/usuario' element={<Usuario/>}/>
       </Routes>
    
     </div>

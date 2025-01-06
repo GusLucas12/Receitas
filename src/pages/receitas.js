@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './receitas.module.css';
 import Card from '../components/card.js';
+import { Link } from 'react-router-dom';
 
 function Receitas() {
     const [cards, setCards] = useState([]);
@@ -29,7 +30,7 @@ function Receitas() {
                         />
                     ))}
                     <div className={styles.cardAdd} onClick={addCard}>
-                        <h2>+</h2>
+                      <Link><h2>+</h2></Link>
                     </div>
                 </div>
             </div>
