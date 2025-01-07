@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+    flex-direction: column;
+
+    background-color: #D2B48C;
+    width: 100%;
+    min-height: 761px;
+    padding: 20px;
+    font-family: 'Playfair Display';
+    color: #e63946;
+ 
+    box-sizing: border-box;
+    overflow: auto;
+    max-height: 100vh;
+}
+
+.perfilDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fotoNome {
+
+    display: flex;
+    align-items: center;
+
+}
+.fotoNome h1{
+    margin: 0;
+    font-size: 96px;
+    font-weight: 300;
+}
+.foto {
+    width: 318px;
+    height: 275px;
+    border-radius: 50%;
+    background-color: #cccccc;
+    margin-right: 15px;
+}
+.nomeBadge {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.badge {
+    background-color: #e63946;
+    width: 191px;
+    height: 61px;
+    color: #000;
+    border-radius: 30px;
+    font-size: 40px;
+    margin-top: 5px;
+    text-align: center;
+}
+.editarPerfil {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
