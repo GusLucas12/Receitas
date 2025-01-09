@@ -13,6 +13,11 @@
     overflow: auto;
     max-height: 100vh;
 }
+.perfilContainer {
+    font-family: Arial, sans-serif;
+    border-bottom: 1px solid #e63946;
+    padding: 20px;
+}
 
 .perfilDetails {
     display: flex;
@@ -59,4 +64,58 @@
     border: none;
     font-size: 20px;
     cursor: pointer;
+}
+.descricao {
+    margin: 20px 0;
+    background-color: #fff2e6;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #d9a774;
+    margin: 50px 50px;
+}
+.descricao h3 {
+    margin: 0;
+    color: #a52a2a;
+}
+.scroll{
+    font-family: 'Playfair Display', serif;
+    color: #000;
+   
+    display: flex;
+    overflow-x: auto; 
+    gap: 16px; 
+    padding: 10px;
+    scroll-behavior: smooth;
+}
+
+.scrollContainer::-webkit-scrollbar-track::-webkit-scrollbar {
+    height: 8px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.scroll::-webkit-scrollbar-track {
+    background: #f4f4f4;
+}
+
+.cardAdd {
+    background-color: #f0f0f0;
+    border: 2px dashed #000000;
+    border-radius: 20px;
+    min-width: 420px;
+    min-height: 346px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Playfair Display';
+    font-size: 48px;
+    font-style: normal;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;}
+
+.cardAdd:hover {
+    border-color: #999;
 }
