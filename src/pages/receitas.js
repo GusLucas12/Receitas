@@ -23,13 +23,13 @@ function Receitas() {
                 <h1 className={styles.title}>Suas Receitas</h1>
                 <div className={styles.cardsRow}>
                     {cards.map((card) => (
-                        <Link to='/editarReceita'>
+                       
                             <Card
                                 key={card.id}
                                 title={card.title}
                                 onDelete={() => deleteCard(card.id)}
                             />
-                        </Link>
+                    
 
                     ))}
                     <div className={styles.cardAdd} onClick={addCard}>
