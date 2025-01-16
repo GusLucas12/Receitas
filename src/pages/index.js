@@ -2,17 +2,17 @@ import header from "../components/cabeca";
 
 import styles from './home.module.css';
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importe o useNavigate
+import { useNavigate } from "react-router-dom"; 
 
 
 function Home() {
     const [recipe, setRecipe] = useState("");
-    const navigate = useNavigate(); // Inicialize o hook useNavigate
+    const navigate = useNavigate(); 
 
     const handleSubmit = (e) => {
-        e.preventDefault(); // Previne o comportamento padrão de recarregar a página
+        e.preventDefault(); 
         if (recipe) {
-            navigate(`/busca?query=${encodeURIComponent(recipe)}`); // Redireciona para a rota com o parâmetro
+            navigate(`/busca?query=${encodeURIComponent(recipe)}`); 
         } else {
             alert("Por favor, insira uma receita!");
         }
