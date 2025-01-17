@@ -1,4 +1,4 @@
-import styles from './criar.module.css';
+
 import React, { useState } from "react";
 
 function EditarReceitas({ receita }) {

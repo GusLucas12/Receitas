@@ -4,7 +4,22 @@ import React, { useState } from "react";
 function Criar() {
     const [ingredients, setIngredients] = useState([{ id: 1, quantidade: "", ingrediente: "" }]);
     const [steps, setSteps] = useState([{ id: 1, descricao: "" }]);
+    const [sustentaveis, setSustentaveis] = useState([{ id: 1, descricao: "" }]);
 
+    const addSustentavel = () => {
+        setSustentaveis([...sustentaveis, { id: Date.now(), descricao: "" }]);
+    };
+
+    const handleSustentavelChange = (id, value) => {
+        setSustentaveis(sustentaveis.map((item) =>
+            item.id === id ? { ...item, descricao: value } : item
+        ));
+    };
+
+    const handleDeleteSustentavel = (id) => {
+        setSustentaveis(sustentaveis.filter((item) => item.id !== id));
+    };
+    
     const addIngredient = () => {
         setIngredients([...ingredients, { id: Date.now(), quantidade: "", ingrediente: "" }]);
     };
@@ -33,7 +48,7 @@ function Criar() {
         ));
     };
 
-    const handleSave = () => {
+    const handleSave = async () => {
         const titulo = document.getElementById("titulo").value.trim();
         const tempoPreparo = document.getElementById("tempoPreparo").value.trim();
         const dificuldade = document.getElementById("dificuldade").value;
@@ -41,23 +56,46 @@ function Criar() {
             (ingredient) => !ingredient.quantidade.trim() || !ingredient.ingrediente.trim()
         );
         const hasEmptyStep = steps.some((step) => !step.descricao.trim());
-    
-        if (!titulo || !tempoPreparo || hasEmptyIngredient || hasEmptyStep) {
+        const hasEmptySustentavel = sustentaveis.some((item) => !item.descricao.trim());
+
+        if (!titulo || !tempoPreparo || hasEmptyIngredient || hasEmptyStep || hasEmptySustentavel) {
             alert("Preencha todos os campos antes de salvar!");
             return;
         }
-    
-        // Salvar a receita se todos os campos estiverem preenchidos
+
         const data = {
-            titulo,
-            tempoPreparo,
-            dificuldade,
-            ingredientes: ingredients.map((ing) => `(${ing.quantidade} ${ing.ingrediente})`).join(" "),
-            passos: steps.map((step, index) => `${index + 1}. ${step.descricao}`).join("\n"),
+            name: titulo,
+            ingredients: ingredients
+                .map((ing) => `${ing.quantidade} ${ing.ingrediente}`)
+                .join(", "),
+            prepareTime: tempoPreparo,
+            difficulty: dificuldade,
+            prepareMode: steps
+                .map((step, index) => `${index + 1}. ${step.descricao}`)
+                .join("\n"),
+            sustentable: sustentaveis
+                .map((item, index) => `${index + 1}. ${item.descricao}`)
+                .join("\n"),
         };
-    
-        console.log("Dados salvos:", data);
-        alert(`Receita salva com sucesso!\n\nTítulo: ${data.titulo}\nTempo de Preparo: ${data.tempoPreparo}\nDificuldade: ${data.dificuldade}\nIngredientes: ${data.ingredientes}\nPassos:\n${data.passos}`);
+
+        try {
+            const response = await fetch("https://backend-engsoft.onrender.com/createRecipe", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+                throw new Error("Erro ao salvar a receita. Tente novamente.");
+            }
+
+            const result = await response.json();
+            alert(`Receita salva com sucesso: ${result.message || "Sem mensagem adicional"}`);
+        } catch (error) {
+            alert(`Erro: ${error.message}`);
+        }
     };
 
     return (
@@ -77,9 +115,9 @@ function Criar() {
                         <div>
                             <label htmlFor="dificuldade">Dificuldade</label>
                             <select id="dificuldade">
-                                <option value="Facil">Fácil</option>
-                                <option value="Medio">Média</option>
-                                <option value="Dificil">Difícil</option>
+                                <option value="easy">Fácil</option>
+                                <option value="medium">Média</option>
+                                <option value="hard">Difícil</option>
                             </select>
                         </div>
                     </div>
@@ -121,7 +159,7 @@ function Criar() {
                         </button>
                     </div>
 
-                    <div className={styles.formGroup}>
+                    <div className={styles.formGroup} >
                         <label>Passos</label>
                         {steps.map((step, index) => (
                             <div key={step.id} className={styles.stepRow}>
@@ -150,6 +188,37 @@ function Criar() {
                             <span>+</span>
                         </button>
                     </div>
+                    <div className={styles.formGroup}>
+                       <label>Sugestões Sustentáveis</label>
+                        {sustentaveis.map((item, index) => (
+                            <div key={item.id} className={styles.stepRow}>
+                                <span className={styles.stepCounter}>{index + 1}.</span>
+                                <input
+                                    type="text"
+                                    placeholder="Descrição da sugestão"
+                                    value={item.descricao}
+                                    onChange={(e) =>
+                                        handleSustentavelChange(item.id, e.target.value)
+                                    }
+                                />
+                                <button
+                                    className={styles.btnDelete}
+                                    onClick={() => handleDeleteSustentavel(item.id)}
+                                >
+                                    <span>❌</span>
+                                </button>
+                            </div>
+                        ))}
+                        <button
+                            type="button"
+                            onClick={addSustentavel}
+                            className={styles.addButton}
+                        >
+                            <span>+</span>
+                        </button>
+                    </div>
+
+
                     <div className={styles.saveBtnRow}>
                         <button
                             type="button"

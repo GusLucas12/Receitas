@@ -60,6 +60,58 @@ function Busca() {
     const closePopup = () => {
         setShowPopup(false);
     };
+    const mapDifficulty = (difficulty) => {
+        const difficultyMap = {
+            "Fácil": "easy",
+            "Média": "medium",
+            "Difícil": "hard",
+        };
+        return difficultyMap[difficulty] || difficulty; 
+    };
+    const handleSave = async () => {
+        const titulo = document.querySelector(`.${styles.popupInput}`).value.trim();
+
+        if (!titulo || !recipeData) {
+            alert("Erro: Nenhuma receita encontrada ou título está vazio.");
+            return;
+        }
+        const mappedDifficulty = mapDifficulty(recipeData.dificuldade);
+        const data = {
+            name: titulo,
+            ingredients: recipeData.ingredientes
+                .map((ing) => `${ing.quantidade} ${ing.ingrediente}`)
+                .join(", "),
+            prepareTime: recipeData.tempo_de_preparo,
+            difficulty: mappedDifficulty,
+            prepareMode: recipeData.passos
+                .map((passo, index) => `${index + 1}. ${passo}`)
+                .join("\n"),
+            sustentable: recipeData.sustentaveis
+                .map((item, index) => `${index + 1}. ${item}`)
+                .join("\n"),
+        };
+
+        try {
+            const response = await fetch("https://backend-engsoft.onrender.com/createRecipe", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+                throw new Error("Erro ao salvar a receita. Tente novamente.");
+            }
+
+            
+            alert(`Receita salva com sucesso`);
+            closePopup();
+        } catch (error) {
+            alert(`Erro: ${error.message}`);
+        }
+    };
+
 
     return (
         <div>
@@ -107,20 +159,20 @@ function Busca() {
                                     </ul>
                                 </div>
                                 <div className={styles.passos}>
-                                <h3>Passos:</h3>
-                                <ol>
-                                    {recipeData.passos.map((passo, index) => (
-                                        <li key={index}>{passo}</li>
-                                    ))}
-                                </ol>
+                                    <h3>Passos:</h3>
+                                    <ol>
+                                        {recipeData.passos.map((passo, index) => (
+                                            <li key={index}>{passo}</li>
+                                        ))}
+                                    </ol>
                                 </div>
                                 <div className={styles.passos}>
-                                <h3>Sugestões sustentaveis</h3>
-                                <ol>
-                                    {recipeData.sustentaveis.map((item, index) => (
-                                        <li key={index}>{item}</li>
-                                    ))}
-                                </ol>
+                                    <h3>Sugestões sustentaveis</h3>
+                                    <ol>
+                                        {recipeData.sustentaveis.map((item, index) => (
+                                            <li key={index}>{item}</li>
+                                        ))}
+                                    </ol>
                                 </div>
                             </div>
                         </>
@@ -139,7 +191,7 @@ function Busca() {
                             readOnly
                             className={styles.popupInput}
                         />
-                        <button className={styles.saveButton}>Salvar</button>
+                        <button className={styles.saveButton} onClick={handleSave}>Salvar</button>
                     </div>
                 </div>
             )}
