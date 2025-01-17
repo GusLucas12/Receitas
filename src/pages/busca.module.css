@@ -53,7 +53,7 @@
   background-color: #D2B48C;
   width: 100%;
   min-height: 761px;
-  padding: 20px;
+  padding: 20px; 
   font-family: 'Playfair Display';
   color: #e63946;
   font-weight: bold;
@@ -114,9 +114,9 @@
   left: 10px;
   background-color: transparent;
   border: none;
-  font-size: 24px;
+  font-size: 40px;
   cursor: pointer;
-  color: gold;
+  color: rgb(54, 46, 0);
   transition: transform 0.2s ease-in-out;
 }
 

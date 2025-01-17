@@ -1,0 +1,72 @@
+.editProfileContainer {
+    padding: 20px;
+    background-color: #d2b48c;
+  }
+  .fotoNome {
+
+    display: flex;
+    align-items: center;
+
+}
+.fotoNome h1{
+    margin: 0;
+    font-size: 96px;
+    font-weight: 300;
+}
+.foto {
+    width: 318px;
+    height: 275px;
+    border-radius: 50%;
+    background-color: #cccccc;
+    margin-right: 15px;
+}
+.nomeBadge {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+  .chooseImage {
+    background-color: #a42e2e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .form label {
+    display: block;
+    margin: 10px 0 5px ;
+  }
+  
+  input{
+    width: 100%;
+    height: 76px;
+    font-size: 40px;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #000;
+  }
+  textarea {
+    width: 100%;
+    height: 233px;
+    font-size: 40px;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #000;
+  }
+  hr {
+    margin: 20px 0;
+  }
+  
+  .saveButton {
+    background-color: #a42e2e;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+  }
+  h2{
+    font-size:40px;
+    margin-bottom: 100px;
+  }

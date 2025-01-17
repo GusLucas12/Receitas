@@ -20,7 +20,8 @@ function Busca() {
         todas as respostas precisam estar relacionadas a receitas, priorizando as brasileiras 
         tradicionais e receitas internacionais amplamente conhecidas. As respostas devem ser apresentadas
         exclusivamente no formato JSON. Sempre formate as respostas com nome, tempo_de_preparo, 
-        dificuldade (Fácil, Média e Difícil), ingredientes(ingrediente , quantidade), e passos. `;
+        dificuldade (Fácil, Média e Difícil), ingredientes(ingrediente , quantidade), passos e sustentaveis(
+        nesse campo me forneça sugestões sustentaveis do que fazer com restos , sobras dos ingredientes e etc ).   `;
 
         try {
             const response = await fetch("https://backend-engsoft.onrender.com/askthequestion", {
@@ -113,7 +114,14 @@ function Busca() {
                                     ))}
                                 </ol>
                                 </div>
-                                
+                                <div className={styles.passos}>
+                                <h3>Sugestões sustentaveis</h3>
+                                <ol>
+                                    {recipeData.sustentaveis.map((item, index) => (
+                                        <li key={index}>{item}</li>
+                                    ))}
+                                </ol>
+                                </div>
                             </div>
                         </>
                     )}

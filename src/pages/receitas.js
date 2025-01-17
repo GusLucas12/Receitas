@@ -23,14 +23,17 @@ function Receitas() {
                 <h1 className={styles.title}>Suas Receitas</h1>
                 <div className={styles.cardsRow}>
                     {cards.map((card) => (
-                        <Card
-                            key={card.id}
-                            title={card.title}
-                            onDelete={() => deleteCard(card.id)}
-                        />
+                       
+                            <Card
+                                key={card.id}
+                                title={card.title}
+                                onDelete={() => deleteCard(card.id)}
+                            />
+                    
+
                     ))}
                     <div className={styles.cardAdd} onClick={addCard}>
-                      <Link><h2>+</h2></Link>
+                        <Link><h2>+</h2></Link>
                     </div>
                 </div>
             </div>

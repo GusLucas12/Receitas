@@ -8,6 +8,8 @@ import Busca from './pages/busca';
 import Receitas from './pages/receitas';
 import Criar from './pages/criar';
 import Usuario from './pages/usuario';
+import Editar from './pages/editarUsu';
+import EditarReceitas from './pages/editar';
 function App() {
   return (
 
@@ -20,6 +22,8 @@ function App() {
         <Route path='/receitas' element={<Receitas/>}/>
         <Route path='/criar' element={<Criar/>}/>
         <Route path='/usuario' element={<Usuario/>}/>
+        <Route path='/editar' element={<Editar/>}/>
+        <Route path='/editarReceita' element={<EditarReceitas/>}/>
       </Routes>
    
     </div>
