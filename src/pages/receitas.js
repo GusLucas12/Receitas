@@ -5,7 +5,7 @@ import Card from '../components/card.js';
 function Receitas() {
     const [recipes, setRecipes] = useState([]);
 
-    // Buscar receitas do backend
+
     useEffect(() => {
         const fetchRecipes = async () => {
             try {
@@ -14,7 +14,7 @@ function Receitas() {
                     throw new Error('Erro ao buscar receitas');
                 }
                 const data = await response.json();
-                setRecipes(data); // Assumindo que o backend retorna uma lista de receitas
+                setRecipes(data);
             } catch (error) {
                 console.error(error);
                 alert('Erro ao carregar receitas.');
@@ -53,6 +53,7 @@ function Receitas() {
                             title={recipe.name}
                             difficulty={recipe.difficulty}
                             prepareTime={recipe.prepareTime}
+                            recipe={recipe}
                             onDelete={() => deleteRecipe(recipe.id)}
                         />
                     ))}
