@@ -117,7 +117,7 @@ function Busca() {
         <div>
             <div className={styles.main}>
                 <div className={styles.container}>
-                    <form onSubmit={handleSubmit} className={styles.form}>
+                <form onSubmit={handleSubmit} className={styles.form}>
                         <input
                             type="text"
                             placeholder="Digite o nome da receita..."
