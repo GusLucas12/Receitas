@@ -89,6 +89,7 @@ function Busca() {
             sustentable: recipeData.sustentaveis
                 .map((item, index) => `${index + 1}. ${item}`)
                 .join("\n"),
+            isIa: true    
         };
 
         try {
