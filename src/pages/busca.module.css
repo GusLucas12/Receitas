@@ -7,9 +7,11 @@
   background-color: #FFF9C4;
 }
 
-
-.form {
+.container{
   margin-top: 200px;
+}
+.form {
+ 
   margin-bottom: 30px;
   width: 1163px;
   height: 67px;
