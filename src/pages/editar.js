@@ -105,7 +105,7 @@ function EditarReceitas() {
             prepareTime: tempoPreparo,
             difficulty: dificuldade,
             prepareMode: steps
-                .map((step, index) => `${index + 1}. ${step.descricao}`)
+                .map((step) => `${step.descricao}`)
                 .join("\n"),
         };
 

@@ -84,10 +84,10 @@ function Busca() {
             prepareTime: recipeData.tempo_de_preparo,
             difficulty: mappedDifficulty,
             prepareMode: recipeData.passos
-                .map((passo, index) => `${index + 1}. ${passo}`)
+                .map((passo, index) => ` ${passo}`)
                 .join("\n"),
             sustentable: recipeData.sustentaveis
-                .map((item, index) => `${index + 1}. ${item}`)
+                .map((item, index) => ` ${item}`)
                 .join("\n"),
         };
 
