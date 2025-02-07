@@ -11,8 +11,8 @@ const Button = ({ text, onClick, variant = "primary" }) => (
     </button>
 );
 
-export default function LoginPage() {
-    const [stayConnected, setStayConnected] = useState(false);
+export default function CadastrarPage() {
+
     const [showPassword, setShowPassword] = useState(false);
     return (
         <div className={styles.container}>
@@ -21,6 +21,7 @@ export default function LoginPage() {
                 <h2 className={styles.heading}>Entrar</h2>
 
                 <div className={styles.infoContainer}>
+                    <InputField label="Nome" type="name" placeholder="Remy Ratatouile" />
                     <InputField label="E-mail" type="email" placeholder="remy@cozinha.com" />
                     <InputField
                         label="Senha"
@@ -29,23 +30,16 @@ export default function LoginPage() {
                         isPassword={true}
                         toggleVisibility={() => setShowPassword(!showPassword)}
                     />
-                    <div className={styles.checkboxContainer}>
-                        <input
-                            type="checkbox"
-                            checked={stayConnected}
-                            onChange={() => setStayConnected(!stayConnected)}
-                            className={styles.checkbox}
-                        />
-                        <span>Permanecer Conectado</span>
-                    </div>
+                     <InputField
+                        label="Confirmar Senha"
+                        type={showPassword ? "text" : "password"}
+                        placeholder="********"
+                        isPassword={true}
+                        toggleVisibility={() => setShowPassword(!showPassword)}
+                    />
+                 
                 </div>
-
-
-
-
-                <Button text="Entrar" />
-                <p className={styles.orText}><span>---------</span>ou<span>---------</span></p>
-                <Button text="Cadastrar" variant="secondary" />
+                <Button text="Cadastrar" variant="primary" />
             </div>
         </div>
     );
