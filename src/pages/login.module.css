@@ -1,0 +1,104 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #fceabb;
+  }
+  
+  .card {
+    background-color: #d2a679;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 350px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4a362d;
+    font-style: italic;
+  }
+  
+  .subtitle {
+    color: #7a5c48;
+  }
+  
+  .heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4a362d;
+    margin-bottom: 1rem;
+  }
+  
+  .inputContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  
+  .label {
+    font-weight: bold;
+    color: #4a362d;
+    margin-bottom: 0.5rem;
+  }
+  
+  .input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #e6e6e6;
+    outline: none;
+  }
+  
+  .checkboxContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #4a362d;
+  }
+  
+  .checkbox {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+    accent-color: #b02e0c;
+  }
+  
+  .button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s;
+  }
+  
+  .primary {
+    background-color: #b02e0c;
+  }
+  
+  .primary:hover {
+    background-color: #8c220b;
+  }
+  
+  .secondary {
+    background-color: #800000;
+  }
+  
+  .secondary:hover {
+    background-color: #600000;
+  }
+  
+  .orText {
+    margin: 1rem 0;
+    font-weight: bold;
+    color: #4a362d;
+  }
+  

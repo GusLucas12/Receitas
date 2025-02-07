@@ -8,12 +8,24 @@ function Busca() {
     const [recipeQuery, setRecipeQuery] = useState(initialRecipe);
     const [recipeData, setRecipeData] = useState(null);
     const [showPopup, setShowPopup] = useState(false);
+    const [feedbackMessages, setFeedbackMessages] = useState([]); // Mensagens de erro ou sucesso
+    const [feedbackType, setFeedbackType] = useState(""); // Tipo de feedback: "error" ou "success"
 
     useEffect(() => {
         if (initialRecipe) {
             fetchRecipe(initialRecipe);
         }
     }, [initialRecipe]);
+
+    const addFeedbackMessage = (message, type) => {
+        setFeedbackMessages((prev) => [...prev, message]);
+        setFeedbackType(type);
+    };
+
+    const clearFeedbackMessages = () => {
+        setFeedbackMessages([]);
+        setFeedbackType("");
+    };
 
     const fetchRecipe = async (query) => {
         const text = `me de uma receita de ${query}, se limite a apenas uma receita por vez , 
@@ -34,62 +46,60 @@ function Busca() {
 
             let rawText = await response.text();
 
-
             rawText = rawText.replace(/```json|```/g, "").trim();
 
             const jsonResponse = JSON.parse(rawText);
             setRecipeData(jsonResponse);
         } catch (error) {
+            addFeedbackMessage("Erro ao buscar a receita. Tente novamente.", "error");
             console.error("Erro ao buscar a receita:", error);
         }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (recipeQuery) {
-            fetchRecipe(recipeQuery);
+        clearFeedbackMessages();
+        if (!recipeQuery.trim()) {
+            addFeedbackMessage("Insira uma receita ou um ingrediente.", "error");
         } else {
-            alert("Por favor, insira uma receita!");
+            fetchRecipe(recipeQuery);
         }
     };
 
     const handleAddToFavorites = () => {
+        if (!recipeData) {
+            addFeedbackMessage("Nenhuma receita disponível para adicionar aos favoritos.", "error");
+            return;
+        }
         setShowPopup(true);
     };
 
     const closePopup = () => {
         setShowPopup(false);
     };
-    const mapDifficulty = (difficulty) => {
-        const difficultyMap = {
-            "Fácil": "easy",
-            "Média": "medium",
-            "Difícil": "hard",
-        };
-        return difficultyMap[difficulty] || difficulty; 
-    };
+
     const handleSave = async () => {
         const titulo = document.querySelector(`.${styles.popupInput}`).value.trim();
 
         if (!titulo || !recipeData) {
-            alert("Erro: Nenhuma receita encontrada ou título está vazio.");
+            addFeedbackMessage("Erro: Nenhuma receita encontrada ou título está vazio.", "error");
             return;
         }
-        const mappedDifficulty = mapDifficulty(recipeData.dificuldade);
+
         const data = {
             name: titulo,
             ingredients: recipeData.ingredientes
                 .map((ing) => `${ing.quantidade} ${ing.ingrediente}`)
                 .join(", "),
             prepareTime: recipeData.tempo_de_preparo,
-            difficulty: mappedDifficulty,
+            difficulty: recipeData.dificuldade,
             prepareMode: recipeData.passos
-                .map((passo, index) => ` ${passo}`)
+                .map((passo) => ` ${passo}`)
                 .join("\n"),
             sustentable: recipeData.sustentaveis
-                .map((item, index) => ` ${item}`)
+                .map((item) => ` ${item}`)
                 .join("\n"),
-            isIa: true    
+            isIa: true
         };
 
         try {
@@ -105,20 +115,18 @@ function Busca() {
                 throw new Error("Erro ao salvar a receita. Tente novamente.");
             }
 
-            
-            alert(`Receita salva com sucesso`);
+            addFeedbackMessage("Receita salva com sucesso!", "success");
             closePopup();
         } catch (error) {
-            alert(`Erro: ${error.message}`);
+            addFeedbackMessage(`Erro ao salvar a receita: ${error.message}`, "error");
         }
     };
-
 
     return (
         <div>
             <div className={styles.main}>
                 <div className={styles.container}>
-                <form onSubmit={handleSubmit} className={styles.form}>
+                    <form onSubmit={handleSubmit} className={styles.form}>
                         <input
                             type="text"
                             placeholder="Digite o nome da receita..."
@@ -131,6 +139,20 @@ function Busca() {
                         </button>
                     </form>
                 </div>
+
+                {feedbackMessages.length > 0 && (
+                    <div
+                        className={`${styles.feedbackContainer} ${
+                            feedbackType === "success" ? styles.success : styles.error
+                        }`}
+                    >
+                        {feedbackMessages.map((msg, index) => (
+                            <p key={index} className={styles.feedbackMessage}>
+                                {msg}
+                            </p>
+                        ))}
+                    </div>
+                )}
 
                 <div className={styles.telaDeBusca}>
                     {recipeData && (
@@ -168,7 +190,7 @@ function Busca() {
                                     </ol>
                                 </div>
                                 <div className={styles.passos}>
-                                    <h3>Sugestões sustentaveis</h3>
+                                    <h3>Sugestões sustentáveis</h3>
                                     <ol>
                                         {recipeData.sustentaveis.map((item, index) => (
                                             <li key={index}>{item}</li>
