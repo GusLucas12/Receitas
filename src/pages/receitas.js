@@ -1,40 +1,62 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './receitas.module.css';
 import Card from '../components/card.js';
-import { Link } from 'react-router-dom';
 
 function Receitas() {
-    const [cards, setCards] = useState([]);
+    const [recipes, setRecipes] = useState([]);
 
-    const addCard = () => {
-        const newCard = { id: cards.length + 1, title: `Card ${cards.length + 1}` };
-        setCards([...cards, newCard]);
+
+    useEffect(() => {
+        const fetchRecipes = async () => {
+            try {
+                const response = await fetch('https://backend-engsoft.onrender.com/getAllRecipes');
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar receitas');
+                }
+                const data = await response.json();
+                setRecipes(data);
+            } catch (error) {
+                console.error(error);
+                alert('Erro ao carregar receitas.');
+            }
+        };
+
+        fetchRecipes();
+    }, []);
+    const deleteRecipe = async (id) => {
+        try {
+            const response = await fetch('https://backend-engsoft.onrender.com/deleteRecipe', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id }),
+            });
+
+            if (response.ok) {
+                setRecipes(recipes.filter((recipe) => recipe.id !== id));
+                alert('Receita deletada com sucesso!');
+            } else {
+                alert('Erro ao deletar receita.');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('Erro ao deletar receita.');
+        }
     };
-
-    const deleteCard = (id) => {
-        setCards(cards.filter((card) => card.id !== id));
-    };
-
     return (
         <div className={styles.main}>
             <div className={styles.container}>
-
-
-                <h1 className={styles.title}>Suas Receitas</h1>
+                <h1 className={styles.title}>Receitas Disponíveis</h1>
                 <div className={styles.cardsRow}>
-                    {cards.map((card) => (
-                       
-                            <Card
-                                key={card.id}
-                                title={card.title}
-                                onDelete={() => deleteCard(card.id)}
-                            />
-                    
-
+                    {recipes.map((recipe) => (
+                        <Card
+                            key={recipe.id}
+                            title={recipe.name}
+                            difficulty={recipe.difficulty}
+                            prepareTime={recipe.prepareTime}
+                            recipe={recipe}
+                            onDelete={() => deleteRecipe(recipe.id)}
+                        />
                     ))}
-                    <div className={styles.cardAdd} onClick={addCard}>
-                        <Link><h2>+</h2></Link>
-                    </div>
                 </div>
             </div>
         </div>

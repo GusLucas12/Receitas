@@ -10,6 +10,8 @@ import Criar from './pages/criar';
 import Usuario from './pages/usuario';
 import Editar from './pages/editarUsu';
 import EditarReceitas from './pages/editar';
+import LoginPage from './pages/login';
+import CadastrarPage from './pages/cadastrar';
 function App() {
   return (
 
@@ -23,7 +25,9 @@ function App() {
         <Route path='/criar' element={<Criar/>}/>
         <Route path='/usuario' element={<Usuario/>}/>
         <Route path='/editar' element={<Editar/>}/>
-        <Route path='/editarReceita' element={<EditarReceitas/>}/>
+        <Route path="/editarReceita/:id" element={<EditarReceitas/>} />
+        <Route path='/login' element={<LoginPage/>}/>
+        <Route path='/cadastrar' element={<CadastrarPage/>}/>
       </Routes>
    
     </div>

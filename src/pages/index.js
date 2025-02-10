@@ -30,7 +30,7 @@ function Home() {
                         <form onSubmit={handleSubmit} className={styles.form}>
                             <input
                                 type="text"
-                                placeholder="Digite o nome da receita..."
+                                placeholder="Digite o nome de uma receita ou ingredientes..."
                                 value={recipe}
                                 onChange={(e) => setRecipe(e.target.value)}
                                 className={styles.input}

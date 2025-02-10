@@ -1,0 +1,36 @@
+
+.inputContainer {
+    display: flex;
+    border-radius: 25px;
+    border: none;
+    flex-direction: column;
+    margin: 27px;
+    width: 806px;
+
+}
+.label {
+    font-weight: bold;
+    color: #4a362d;
+    margin-bottom: 0.5rem;
+}
+
+.input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #e6e6e6;
+    outline: none;
+}
+.passwordWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .toggleButton {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none; 
+    cursor: pointer;
+    font-size: 32px;
+  }

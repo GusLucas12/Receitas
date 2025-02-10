@@ -1,0 +1,138 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #FFF9C4;
+    
+}
+
+.card {
+    background-color: #D2B48C;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 1014px;
+    min-height: 841px;
+    margin: 20px;
+}
+
+.title {
+    font-family: "Galada", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 96px;
+    color: white;
+    margin: 0px;
+}
+
+.subtitle {
+    color: #7a5c48;
+}
+
+.heading {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #4a362d;
+    margin: 0px;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 27px;
+    margin-bottom: 1rem;
+}
+
+.inputContainer {
+    display: flex;
+    border-radius: 25px;
+    border: none;
+    flex-direction: column;
+    margin: 27px;
+    width: 806px;
+
+}
+.label {
+    font-weight: bold;
+    color: #4a362d;
+    margin-bottom: 0.5rem;
+}
+
+.input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #e6e6e6;
+    outline: none;
+}
+.passwordWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .toggleButton {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none; 
+    cursor: pointer;
+    font-size: 32px;
+  }
+
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+    font-size: 32px;
+    color: #4a362d;
+
+}
+
+.checkbox {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    accent-color: #b02e0c;
+    margin: 5px;
+}
+
+.button {
+    width: 191px;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-size: 32px;
+    transition: background 0.3s;
+}
+
+.primary {
+    background-color: #b60101;
+}
+
+.primary:hover {
+    background-color: #8c220b;
+}
+
+.secondary {
+    background-color: #b60101;
+}
+
+.secondary:hover {
+    background-color: #600000;
+}
+
+.orText {
+    margin: 1rem 0;
+    font-size: 32px;
+    font-weight: bold;
+    color: #b60101;
+}

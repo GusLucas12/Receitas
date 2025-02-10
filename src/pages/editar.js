@@ -1,12 +1,70 @@
-import styles from './criar.module.css';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import styles from "./criar.module.css";
 
-function EditarReceitas({ receita }) {
-    const [ingredients, setIngredients] = useState(receita.ingredientes || []);
-    const [steps, setSteps] = useState(receita.passos || []);
-    const [titulo, setTitulo] = useState(receita.titulo || "");
-    const [tempoPreparo, setTempoPreparo] = useState(receita.tempoPreparo || "");
-    const [dificuldade, setDificuldade] = useState(receita.dificuldade || "Facil");
+function EditarReceitas() {
+    const { id } = useParams();
+
+    const [titulo, setTitulo] = useState("");
+    const [tempoPreparo, setTempoPreparo] = useState("");
+    const [dificuldade, setDificuldade] = useState("");
+    const [ingredients, setIngredients] = useState([]);
+    const [steps, setSteps] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchRecipe = async () => {
+            try {
+                const response = await fetch(
+                    `https://backend-engsoft.onrender.com/getById?id=${id}`,
+                    {
+                        method: "GET",
+                        headers: { "Content-Type": "application/json" },
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar a receita");
+                }
+
+                let rawText = await response.text();
+                console.log(rawText);
+                const recipe = JSON.parse(rawText);
+
+                const parsedIngredients = recipe.ingredients
+                    ? recipe.ingredients.split(",").map((item) => {
+                        const [quantidade, ...ingrediente] = item.trim().split(" ");
+                        return {
+                            id: Date.now() + Math.random(), // Gerar um ID único
+                            quantidade,
+                            ingrediente: ingrediente.join(" "),
+                        };
+                    })
+                    : [];
+
+
+                const parsedSteps = recipe.prepareMode
+                    ? recipe.prepareMode.split("\n").map((step, index) => ({
+                        id: Date.now() + index,
+                        descricao: step.trim(),
+                    }))
+                    : [];
+
+                setTitulo(recipe.name || "");
+                setTempoPreparo(recipe.prepareTime || "");
+                setDificuldade(recipe.difficulty || "");
+                setIngredients(parsedIngredients);
+                setSteps(parsedSteps);
+            } catch (error) {
+                console.error("Erro ao carregar a receita:", error);
+                alert("Erro ao carregar os dados da receita.");
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        if (id) fetchRecipe();
+    }, [id]);
 
     const addIngredient = () => {
         setIngredients([...ingredients, { id: Date.now(), quantidade: "", ingrediente: "" }]);
@@ -36,23 +94,42 @@ function EditarReceitas({ receita }) {
         ));
     };
 
-    const handleSave = () => {
-        if (!titulo.trim() || !tempoPreparo.trim() || !dificuldade.trim()) {
-            alert("Preencha todos os campos antes de salvar!");
-            return;
-        }
+    const handleSave = async () => {
 
         const updatedData = {
-            titulo,
-            tempoPreparo,
-            dificuldade,
-            ingredientes: ingredients,
-            passos: steps
+            id: id,
+            name: titulo,
+            ingredients: ingredients
+                .map((ing) => `${ing.quantidade} ${ing.ingrediente}`)
+                .join(", "),
+            prepareTime: tempoPreparo,
+            difficulty: dificuldade,
+            prepareMode: steps
+                .map((step) => `${step.descricao}`)
+                .join("\n"),
         };
 
-        console.log("Dados atualizados:", updatedData);
-        alert("Receita atualizada com sucesso!");
+        try {
+            const response = await fetch(`https://backend-engsoft.onrender.com/updateRecipe`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updatedData),
+            });
+
+            if (!response.ok) {
+                throw new Error("Erro ao salvar a receita");
+            }
+
+            alert("Receita atualizada com sucesso!");
+        } catch (error) {
+            console.error("Erro ao salvar a receita:", error);
+            alert("Erro ao salvar os dados da receita.");
+        }
     };
+
+    if (isLoading) {
+        return <div>Carregando...</div>;
+    }
 
     return (
         <div>
@@ -82,13 +159,18 @@ function EditarReceitas({ receita }) {
                             <label>Dificuldade</label>
                             <select
                                 value={dificuldade}
-                                onChange={(e) => setDificuldade(e.target.value)}
+                                onChange={(e) => {
+                                    if (e.target.value !== dificuldade) {
+                                        setDificuldade(e.target.value);
+                                    }
+                                }}
                             >
-                                <option value="Facil">Fácil</option>
-                                <option value="Medio">Média</option>
-                                <option value="Dificil">Difícil</option>
+                                <option value="easy">Fácil</option>
+                                <option value="medium">Média</option>
+                                <option value="hard">Difícil</option>
                             </select>
                         </div>
+
                     </div>
 
                     <div className={styles.formGroup}>
