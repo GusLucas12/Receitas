@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./login.module.css";
 import InputField from "../components/input";
-
+import { Link } from "react-router-dom";
 const Button = ({ text, onClick, variant = "primary" }) => (
     <button
         onClick={onClick}
@@ -45,7 +45,8 @@ export default function LoginPage() {
 
                 <Button text="Entrar" />
                 <p className={styles.orText}><span>---------</span>ou<span>---------</span></p>
-                <Button text="Cadastrar" variant="secondary" />
+
+                <Link to='/cadastrar'><Button text="Cadastrar" variant="secondary" /></Link>
             </div>
         </div>
     );
