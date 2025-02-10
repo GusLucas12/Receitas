@@ -11,6 +11,7 @@ import Usuario from './pages/usuario';
 import Editar from './pages/editarUsu';
 import EditarReceitas from './pages/editar';
 import LoginPage from './pages/login';
+import CadastrarPage from './pages/cadastrar';
 function App() {
   return (
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='/editar' element={<Editar/>}/>
         <Route path="/editarReceita/:id" element={<EditarReceitas/>} />
         <Route path='/login' element={<LoginPage/>}/>
+        <Route path='/cadastrar' element={<CadastrarPage/>}/>
       </Routes>
    
     </div>
