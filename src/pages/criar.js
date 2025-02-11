@@ -134,7 +134,12 @@ function Criar() {
           {/* Título */}
           <div className={styles.formGroup}>
             <label>Título</label>
-            <input id="titulo" type="text" placeholder="Digite o Título" />
+            <input
+              id="titulo"
+              type="text"
+              placeholder="Digite o Título"
+              className={styles.inputCriar}
+            />
           </div>
 
           {/* Tempo de Preparo e Dificuldade */}
@@ -145,6 +150,7 @@ function Criar() {
                 id="tempoPreparo"
                 type="text"
                 placeholder="Digite o Tempo de Preparo"
+                className={styles.inputCriar}
               />
             </div>
             <div>
@@ -173,7 +179,7 @@ function Criar() {
                       e.target.value
                     )
                   }
-                  className={styles.quantityInput}
+                  className={`${styles.inputCriar} ${styles.quantityInput}`}
                 />
                 <div className={styles.inputWithDelete}>
                   <input
@@ -187,6 +193,7 @@ function Criar() {
                         e.target.value
                       )
                     }
+                    className={styles.inputCriar}
                   />
                   <button
                     className={styles.btnDelete}
@@ -218,6 +225,7 @@ function Criar() {
                     placeholder="Descrição do passo"
                     value={step.descricao}
                     onChange={(e) => handleStepChange(step.id, e.target.value)}
+                    className={styles.inputCriar}
                   />
                   <button
                     className={styles.btnDelete}
@@ -251,6 +259,7 @@ function Criar() {
                     onChange={(e) =>
                       handleSustentavelChange(item.id, e.target.value)
                     }
+                    className={styles.inputCriar}
                   />
                   <button
                     className={styles.btnDelete}

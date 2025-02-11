@@ -1,45 +1,50 @@
-.main {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  height: 775px;
-  background-color: #FFF9C4;
+:root {
+  font-size: clamp(12px, 1.5vw, 16px);
 }
 
-.container{
-  margin-top: 200px;
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFF9C4;
+  min-height: 48.4rem;
+  
 }
+
+.container {
+  width: 80%;
+  max-width: 72.7rem;
+  margin: 2rem auto;
+}
+
 .form {
- 
-  margin-bottom: 30px;
-  width: 1163px;
-  height: 67px;
+  width: 100%;
+  height: 4.2rem;
   display: flex;
   align-items: center;
   background-color: #D9D9D9;
-  border-radius: 25px;
+  border-radius: 1.56rem;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  margin-bottom: 1.875rem;
 }
 
 .input {
   background-color: #D9D9D9;
   flex: 1;
-  padding: 12px 20px;
+  padding: 0.75rem 1.25rem;
   border: none;
   outline: none;
-  font-size: 16px;
+  font-size: 1rem;
   font-family: inherit;
   color: #333;
 }
 
-
 .button {
   background: none;
   border: none;
-  font-size: 18px;
-  padding: 0 15px;
+  font-size: 1.125rem;
+  padding: 0 0.94rem;
   cursor: pointer;
   color: #333;
 }
@@ -54,69 +59,61 @@
   align-items: center;
   background-color: #D2B48C;
   width: 100%;
-  min-height: 761px;
-  padding: 20px; 
+  min-height: 47.56rem;
+  padding: 1.25rem;
   font-family: 'Playfair Display';
   color: #e63946;
   font-weight: bold;
   box-sizing: border-box;
   overflow: auto;
   max-height: 100vh;
-}
-
-.corpo {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 80%;
-  max-width: 1200px;
-}
-
-.recipeDetails h1{
-  font-size: 100px;
-  text-align: center;
-  border-bottom: 1px solid #e63946;
-}
-.recipeContext{
-
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    gap:500px;
-    font-size: 36px;
-    border-bottom: 1px solid #e63946 ;
-
-}
-.recipeContext span{
-  color:#000000;
-}
-.telaDeBusca {
   position: relative;
-  /* Necessário para posicionamento do botão */
-  padding: 20px;
 }
-.ingredientes{
-  
-  font-size: 36px;
-  border-bottom: 1px solid #e63946 ;
+
+.recipeDetails h1 {
+  font-size: 6.25rem;
+  text-align: center;
+  border-bottom: 0.0625rem solid #e63946;
 }
-.ingredientes ul{
-  color:#000000;
+
+.recipeContext {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 31.25rem;
+  font-size: 2.25rem;
+  border-bottom: 0.0625rem solid #e63946;
 }
-.passos{
-  font-size: 36px;
-  border-bottom: 1px solid #e63946 ;
+
+.recipeContext span {
+  color: #000000;
 }
-.passos ol{
-  color:#000000;
+
+.ingredientes {
+  font-size: 2.25rem;
+  border-bottom: 0.0625rem solid #e63946;
 }
+
+.ingredientes ul {
+  color: #000000;
+}
+
+.passos {
+  font-size: 2.25rem;
+  border-bottom: 0.0625rem solid #e63946;
+}
+
+.passos ol {
+  color: #000000;
+}
+
 .favoriteButton {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 0.625rem;
+  left: 0.625rem;
   background-color: transparent;
   border: none;
-  font-size: 40px;
+  font-size: 2.5rem;
   cursor: pointer;
   color: rgb(54, 46, 0);
   transition: transform 0.2s ease-in-out;
@@ -126,29 +123,28 @@
   transform: scale(1.2);
 }
 
-
 .popup {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
-  border: 2px solid #000;
-  border-radius: 8px;
+  border: 0.125rem solid #000;
+  border-radius: 0.5rem;
   font-family: 'Playfair Display';
   font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  padding: 1.25rem;
   z-index: 1000;
   text-align: center;
 }
 
 .popup h1 {
-  font-size: 48px;
+  font-size: 3rem;
 }
 
 .popup h2 {
-  font-size: 40px;
+  font-size: 2.5rem;
   color: #e63946;
   text-align: start;
 }
@@ -156,64 +152,102 @@
 .popupContent {
   display: flex;
   flex-direction: column;
-
 }
 
 .popupInput {
   width: 95%;
-  padding: 8px;
-  font-size: 32px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 20px;
+  padding: 0.5rem;
+  font-size: 2rem;
+  border: 0.0625rem solid #ccc;
+  border-radius: 0.25rem;
+  margin-bottom: 1.25rem;
 }
 
 .closeButton {
   background-color: #ffff;
-  border: 1px solid #000;
+  border: 0.0625rem solid #000;
   border-radius: 100%;
-  font-size: 18px;
+  font-size: 1.125rem;
   cursor: pointer;
   position: absolute;
-  top: -15px;
-  right: -15px;
+  top: -0.94rem;
+  right: -0.94rem;
 }
 
 .saveButton {
   background-color: #e63946;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 0.625rem 1.25rem;
   cursor: pointer;
-  border-radius: 4px;
-  font-size: 16px;
+  border-radius: 0.25rem;
+  font-size: 1rem;
 }
 
 .saveButton:hover {
   background-color: #d62828;
 }
 
-
 .feedbackContainer {
   margin-top: 1rem;
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   font-size: 2rem;
   margin-bottom: 1rem;
 }
 
 .success {
   background-color: #e6ffe6;
-  border: 1px solid #4caf50;
+  border: 0.0625rem solid #4caf50;
   color: #2e7d32;
 }
 
 .error {
   background-color: #ffe6e6;
-  border: 1px solid #ff4d4d;
+  border: 0.0625rem solid #ff4d4d;
   color: #d32f2f;
 }
 
 .feedbackMessage {
   margin: 0.5rem 0;
+}
+
+@media (max-width: 48rem) {
+  .container {
+    width: 90%;
+    margin-top: 1rem;
+  }
+  .telaDeBusca {
+    padding: 1rem;
+  }
+  .recipeDetails h1 {
+    font-size: 3rem;
+  }
+  .recipeContext {
+    gap: 1rem;
+    font-size: 1.5rem;
+  }
+  .ingredientes,
+  .passos {
+    font-size: 1.5rem;
+  }
+  .favoriteButton {
+    font-size: 2rem;
+  }
+  .popup {
+    padding: 1rem;
+  }
+  .popup h2 {
+    font-size: 2rem;
+  }
+  .popupInput {
+    font-size: 1.5rem;
+  }
+  .saveButton {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  .feedbackContainer {
+    font-size: 1.5rem;
+  }
 }

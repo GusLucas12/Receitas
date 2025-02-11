@@ -41,8 +41,7 @@ label {
   font-size: clamp(1.5rem, 2.5vw, 2.5rem);
 }
 
-input,
-select {
+.inputCriar{
   width: 100%;
   padding: 0.625rem 0.5rem;
   border: 0.0625rem solid #000;
@@ -64,6 +63,15 @@ select {
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 1rem;
+  width: 100%;
+  padding: 0.625rem 0.5rem;
+  border: 0.0625rem solid #000;
+  border-radius: 1.25rem;
+  margin: 0.5rem auto;
+  display: block;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background-color: #fff;
 }
 
 .formRow {
