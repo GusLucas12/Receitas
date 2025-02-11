@@ -1,61 +1,92 @@
-.main {
+:root {
+    font-size: clamp(12px, 1.5vw, 16px);
+  }
+  
+  .main {
     background-color: #D2B48C;
-    min-height: 886px;
+    min-height: 55.4rem; /* aproximadamente 886px */
     width: 100%;
     overflow: auto;
-}
-
-.container {
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 80rem; /* 1280px */
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Alinha os itens ao canto esquerdo */
-    padding: 20px;
-    gap: 20px;
-}
-
-.title {
-    text-align: start;
-    font-size: 36px;
-    margin-bottom: 20px;
-    padding: 10px;
-    font-family: 'Playfair Display', serif;
-    color: #e63946;
-   
+    align-items: flex-start;
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+  
+  .title {
     width: 100%;
-    
-    border-bottom: 1px solid #e63946;
-}
-
-
-.cardsRow {
+    font-size: 2.25rem; /* 36px */
+    margin-bottom: 1.25rem;
+    padding: 0.625rem;
+    text-align: start;
+    font-family: "Playfair Display", serif;
+    color: #e63946;
+    border-bottom: 0.0625rem solid #e63946;
+  }
+  
+  .cardsRow {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
+    gap: 3.125rem; /* 50px */
     width: 100%;
-    max-width: 1280px;
     justify-items: center;
-    margin-bottom: 28px;
-}
-
-.cardAdd {
+    margin-bottom: 1.75rem;
+  }
+  
+  .cardAdd {
     background-color: #f0f0f0;
-    border: 2px dashed #000000;
-    border-radius: 20px;
-    min-width: 420px;
-    min-height: 346px;
+    border: 0.125rem dashed #000;
+    border-radius: 1.25rem;
+    min-width: 26.25rem; /* 420px */
+    min-height: 21.625rem; /* 346px */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Playfair Display';
-    font-size: 48px;
+    font-family: "Playfair Display";
+    font-size: 3rem; /* 48px */
     font-style: normal;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
-}
-
-.cardAdd:hover {
+  }
+  
+  .cardAdd:hover {
     transform: scale(1.05);
     background-color: #dcdcdc;
-}
-
-
+  }
+  
+  @media (max-width: 64rem) {
+    .cardsRow {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+  }
+  
+  @media (max-width: 48rem) {
+    .container {
+      width: 90%;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+    .title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+    }
+    .cardsRow {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .cardAdd {
+      min-width: 100%;
+      min-height: auto;
+      padding: 1rem;
+      font-size: 2.5rem;
+    }
+  }
+  
