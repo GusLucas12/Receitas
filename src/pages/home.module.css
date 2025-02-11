@@ -13,7 +13,7 @@
   background-position: center;
   background-attachment: fixed;
   min-height: 44.5rem;
-  padding: 0rem;
+  padding: 1rem;
 }
 
 .box {
@@ -28,7 +28,7 @@
   height: 31.625rem;
   width: 72.6875rem;
   border-radius: 1.25rem;
-  padding: 1rem;
+  padding: 0rem;
 }
 
 .box h1 {
