@@ -12,7 +12,7 @@
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  min-height: 48.5rem;
+  min-height: 44.5rem;
   padding: 1rem;
 }
 
@@ -48,7 +48,7 @@
 
 .form {
   margin-top: 1.25rem;
-  width: 72.6875rem;
+  width: 74.57rem;
   height: 4.1875rem;
   display: flex;
   align-items: center;
