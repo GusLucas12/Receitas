@@ -143,7 +143,6 @@ function Busca() {
                     </form>
                 </div>
 
-                {/* Componente de Feedback reutilizável com indicador de loading */}
                 <FeedbackMessage messages={feedbackMessages} type={feedbackType} loading={isLoading} />
 
                 <div className={styles.telaDeBusca}>

@@ -1,3 +1,12 @@
+
+  
+  .loading {
+    background-color: #e2e3e5;
+    color: #383d41;
+    border: 1px solid #d6d8db;
+  }
+
+
 .feedbackContainer {
     margin-top: 1rem;
     padding: 1rem;
@@ -21,4 +30,3 @@
   .feedbackMessage {
     margin: 0.5rem 0;
   }
-  

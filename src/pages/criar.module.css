@@ -1,145 +1,253 @@
+/* Define a base de 16px para 1rem */
+:root {
+  font-size: 16px;
+}
+
+/* Container principal da página */
 .container {
-    display: flex;
-    flex-direction: column;
-   
-    background-color: #D2B48C;
-    width: 100%;
-    min-height: 761px;
-    padding: 20px;
-    font-family: 'Playfair Display';
-    color: #e63946;
-    font-weight: bold;
-    box-sizing: border-box;
-    overflow: auto;
-    max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #D2B48C;
+  width: 100%;
+  min-height: 47.6rem; /* aprox. 761px */
+  padding: 1.25rem; /* 20px */
+  font-family: 'Playfair Display', serif;
+  color: #e63946;
+  font-weight: bold;
+  box-sizing: border-box;
+  overflow: auto;
+  max-height: 100vh;
 }
 
+/* Título principal */
 .container h1 {
-    font-size: 100px;
-    text-align: center;
-  
+  font-size: 6.25rem; /* 100px */
+  text-align: center;
+  margin: 1rem 0;
 }
 
+/* Formulário e grupos de campos */
 .form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .formGroup {
-    margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
+/* Labels */
 label {
-    display: block;
-    font-weight: bold;
-    color: #e63946; 
-    text-align: left; 
-    margin-bottom: 5px;
-    font-size: 40px;
+  display: block;
+  font-weight: bold;
+  color: #e63946;
+  text-align: left;
+  margin-bottom: 0.3125rem; /* 5px */
+  font-size: 2.5rem; /* 40px */
 }
-input,
+
+/* Inputs e selects */
+input {
+  width: 100%;
+  padding: 0.625rem 0.5rem; /* 10px 8px */
+  border: 0.0625rem solid #000; /* 1px */
+  border-radius: 1.25rem; /* 20px */
+  margin: 0.5rem auto;
+  display: block;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background-color: #fff; /* fundo branco para inputs */
+}
+
+/* Estilização específica para o select (dificuldade) */
 select {
-    width: 80%;
-    margin-left: 20px;
-    padding: 10px 8px; 
-    border: 1px solid #000;
-    border-radius: 20px;
-    margin: 0 auto;
-    display: block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  color: inherit;
+  width: 100%;
+  padding: 1.75rem 0.5rem; /* 10px 8px */
+  border: 0.0625rem solid #000; /* 1px */
+  border-radius: 1.25rem; /* 20px */
+  margin: 0.5rem auto;
+  display: block;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background-color: #fff;
 }
-.formGroup label{
-    margin-left: 165px;
-}
+
+/* Layout das linhas de formulário */
 .formRow {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 50px; /* Espaço entre os campos */
-    width: 80%;
-    margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3.125rem; /* 50px */
+  width: 100%;
+  margin: 0 auto;
 }
 
 .formRow div {
-    flex: 1;
-    text-align: center;
+  flex: 1;
+  text-align: center;
 }
 
-.formRow input,select{
-    width: 100%;
+.formRow input,
+.formRow select {
+  width: 100%;
 }
 
+/* Layout para a linha de ingredientes (Quantidade e Ingrediente na mesma row) */
 .ingredientRow {
-    display: flex;
-    gap: 50px; 
-    width: 80%;
-    padding: 10px;
-    margin: 0 auto;
-   
-  }
-  .stepRow{
-    display: flex;
-    width: 80%;
-    gap:0px;
-    padding: 10px;
-    margin: 0 auto;
-    
-  }
-  .stepCounter{
-    font-size:30px;
-  }
-  .stepRow div{
-    flex: 1;
-    text-align: center;
-  }
-  .addButton {
-    width: 80%;
-    margin-left: 20px;
-    background-color: transparent;
-    color: #fff;
-    border: 1px solid #000;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0 auto;
-    display: block;
-  }
-  .addButton span{
-    font-size: 40px;
-    color: #e63946;
-  }
-  .addButton:hover {
-    background-color: #e63946;
-  }
-  .addButton:hover span{
-    color: #fff;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.625rem; /* 10px */
+  margin: 0 auto;
+}
+
+/* Classe para o input de Quantidade com largura fixa */
+.quantityInput {
+  flex: 0 0 30%; /* ocupa 30% da linha; ajuste conforme necessário */
+  margin: 0; /* removendo a margem padrão para melhor alinhamento */
+}
+
+/* Container para o input de Ingrediente com botão delete */
+.inputWithDelete {
+  position: relative;
+  flex: 1;
+}
+
+.inputWithDelete input {
+  width: 100%;
+  padding-right: 2.5rem; /* espaço para o botão delete */
+  box-sizing: border-box;
+}
+
+/* Botão delete posicionado dentro do input */
+.btnDelete {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #e63946;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnDelete:hover {
+  color: #fff;
+}
+
+/* Layout para linha de passos e sugestões */
+.stepRow {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0.625rem; /* 10px */
+  margin: 0 auto;
+  align-items: center;
+}
+
+/* Número do passo/sugestão */
+.stepCounter {
+  font-size: 1.875rem; /* 30px */
+  margin-right: 0.5rem;
+}
+
+/* Botão para adicionar novos itens (ingredientes, passos, sugestões) */
+.addButton {
+  width: 100%;
+  background-color: transparent;
+  color: #fff;
+  border: 0.0625rem solid #000;
+  padding: 0.3125rem 0.625rem; /* 5px 10px */
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  margin: 0.5rem auto;
+  display: block;
+  text-align: center;
+}
+
+.addButton span {
+  font-size: 2.5rem; /* 40px */
+  color: #e63946;
+}
+
+.addButton:hover {
+  background-color: #e63946;
+}
+
+.addButton:hover span {
+  color: #fff;
+}
+
+/* Linha do botão Salvar */
+.saveBtnRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+/* Botão Salvar */
+.saveButton {
+  min-width: 11.9375rem; /* ~191px */
+  max-width: 12.5rem;    /* ~200px */
+  height: 3.8125rem;     /* ~61px */
+  background-color: #e63946;
+  border-radius: 1.875rem; /* 30px */
+  font-size: 2.5rem;      /* 40px */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border: none;
+  color: #fff;
+}
+
+.saveButton:hover {
+  transform: scale(1.1);
+}
+
+/* Responsividade para telas menores (até 768px) */
+@media (max-width: 48rem) {
+  .container {
+    padding: 1rem;
   }
 
-  .btnDelete{
-    background-color: transparent;
-    color: #e63946;
-    border-radius: 20%;
+  .container h1 {
+    font-size: 4rem;
   }
-  .btnDelete:hover {
-    background-color: #e63946;
+
+  label {
+    font-size: 2rem;
   }
-  .btnDelete:hover span{
-    color: #fff;
+
+  input {
+    padding: 0.5rem;
   }
-  .saveBtnRow{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  select{
+    padding: 1.75rem; 
   }
-  .saveButton{
-    min-width: 191px;
-    max-width: 200px;
-    height: 61px;
-    background-color: #e63946;
-    border-radius: 30px;
-    font-size: 40px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+  .formRow {
+    gap: 1.5rem;
   }
-  .saveButton:hover{
-    transform: scale(1.1);
+
+  .addButton span {
+    font-size: 2rem;
   }
+
+  .saveButton {
+    font-size: 2rem;
+    min-width: 10rem;
+    height: 3.5rem;
+  }
+}
