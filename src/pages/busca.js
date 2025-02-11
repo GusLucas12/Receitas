@@ -49,7 +49,7 @@ function Busca() {
       setRecipeData(jsonResponse);
     } catch (error) {
       addFeedbackMessage("Erro ao buscar a receita. Tente novamente.", "error");
-      console.error("Erro ao buscar a receita:", error);
+    
     } finally {
       setIsLoading(false);
     }

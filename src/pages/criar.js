@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./criar.module.css";
+import FeedbackMessage from "../components/feedback";
 
 function Criar() {
   const [ingredients, setIngredients] = useState([
@@ -7,6 +8,11 @@ function Criar() {
   ]);
   const [steps, setSteps] = useState([{ id: 1, descricao: "" }]);
   const [sustentaveis, setSustentaveis] = useState([{ id: 1, descricao: "" }]);
+
+  // Estados para feedback e carregamento
+  const [loading, setLoading] = useState(false);
+  const [feedbackMessages, setFeedbackMessages] = useState([]);
+  const [feedbackType, setFeedbackType] = useState("");
 
   const addSustentavel = () => {
     setSustentaveis([...sustentaveis, { id: Date.now(), descricao: "" }]);
@@ -72,16 +78,33 @@ function Criar() {
       (item) => !item.descricao.trim()
     );
 
-    if (
-      !titulo ||
-      !tempoPreparo ||
-      hasEmptyIngredient ||
-      hasEmptyStep ||
-      hasEmptySustentavel
-    ) {
-      alert("Preencha todos os campos antes de salvar!");
+    // Acumula todos os erros em um array
+    const errors = [];
+    if (!titulo) {
+      errors.push("O campo Título é obrigatório.");
+    }
+    if (!tempoPreparo) {
+      errors.push("O campo Tempo de Preparo é obrigatório.");
+    }
+    if (hasEmptyIngredient) {
+      errors.push("Preencha todos os campos dos ingredientes.");
+    }
+    if (hasEmptyStep) {
+      errors.push("Preencha todos os campos dos passos.");
+    }
+    if (hasEmptySustentavel) {
+      errors.push("Preencha todos os campos das sugestões sustentáveis.");
+    }
+
+    // Se houver erros, exibe o feedback e não prossegue
+    if (errors.length > 0) {
+      setFeedbackType("error");
+      setFeedbackMessages(errors);
       return;
     }
+
+    setLoading(true);
+    setFeedbackMessages([]);
 
     const data = {
       name: titulo,
@@ -112,17 +135,22 @@ function Criar() {
       );
 
       if (!response.ok) {
-        throw new Error("Erro ao salvar a receita. Tente novamente.");
+        const errorData = await response.json();
+        throw new Error(
+          errorData.message || "Erro ao salvar a receita. Tente novamente."
+        );
       }
 
       const result = await response.json();
-      alert(
-        `Receita salva com sucesso: ${
-          result.message || "Sem mensagem adicional"
-        }`
-      );
+      setFeedbackType("success");
+      setFeedbackMessages([
+        `Receita salva com sucesso: ${result.message || "Sem mensagem adicional"}`,
+      ]);
     } catch (error) {
-      alert(`Erro: ${error.message}`);
+      setFeedbackType("error");
+      setFeedbackMessages([error.message]);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -130,6 +158,12 @@ function Criar() {
     <div>
       <div className={styles.container}>
         <h1>Crie sua receita</h1>
+        {/* Feedback para o usuário */}
+        <FeedbackMessage
+          messages={feedbackMessages}
+          type={feedbackType}
+          loading={loading}
+        />
         <div className={styles.form}>
           {/* Título */}
           <div className={styles.formGroup}>
