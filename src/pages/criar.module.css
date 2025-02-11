@@ -1,16 +1,14 @@
-/* Define a base de 16px para 1rem */
 :root {
-  font-size: 16px;
+  font-size: clamp(12px, 1.5vw, 16px);
 }
 
-/* Container principal da página */
 .container {
   display: flex;
   flex-direction: column;
   background-color: #D2B48C;
   width: 100%;
-  min-height: 47.6rem; /* aprox. 761px */
-  padding: 1.25rem; /* 20px */
+  min-height: 47.6rem;
+  padding: 1.25rem;
   font-family: 'Playfair Display', serif;
   color: #e63946;
   font-weight: bold;
@@ -19,14 +17,12 @@
   max-height: 100vh;
 }
 
-/* Título principal */
 .container h1 {
-  font-size: 6.25rem; /* 100px */
+  font-size: clamp(3rem, 6vw, 6.25rem);
   text-align: center;
   margin: 1rem 0;
 }
 
-/* Formulário e grupos de campos */
 .form {
   display: flex;
   flex-direction: column;
@@ -36,54 +32,46 @@
   margin-bottom: 1rem;
 }
 
-/* Labels */
 label {
   display: block;
   font-weight: bold;
   color: #e63946;
   text-align: left;
-  margin-bottom: 0.3125rem; /* 5px */
-  font-size: 2.5rem; /* 40px */
+  margin-bottom: 0.3125rem;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
 }
 
-/* Inputs e selects */
-input {
+input,
+select {
   width: 100%;
-  padding: 0.625rem 0.5rem; /* 10px 8px */
-  border: 0.0625rem solid #000; /* 1px */
-  border-radius: 1.25rem; /* 20px */
+  padding: 0.625rem 0.5rem;
+  border: 0.0625rem solid #000;
+  border-radius: 1.25rem;
   margin: 0.5rem auto;
   display: block;
   font-size: 1rem;
   box-sizing: border-box;
-  background-color: #fff; /* fundo branco para inputs */
+  background-color: #fff;
 }
 
-/* Estilização específica para o select (dificuldade) */
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   background-color: #fff;
   color: inherit;
-  width: 100%;
-  padding: 1.75rem 0.5rem; /* 10px 8px */
-  border: 0.0625rem solid #000; /* 1px */
-  border-radius: 1.25rem; /* 20px */
-  margin: 0.5rem auto;
-  display: block;
-  font-size: 1rem;
-  box-sizing: border-box;
-  background-color: #fff;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23000" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
 }
 
-/* Layout das linhas de formulário */
 .formRow {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 3.125rem; /* 50px */
+  gap: 3.125rem;
   width: 100%;
   margin: 0 auto;
 }
@@ -98,24 +86,21 @@ select {
   width: 100%;
 }
 
-/* Layout para a linha de ingredientes (Quantidade e Ingrediente na mesma row) */
 .ingredientRow {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   gap: 1rem;
   width: 100%;
-  padding: 0.625rem; /* 10px */
+  padding: 0.625rem;
   margin: 0 auto;
 }
 
-/* Classe para o input de Quantidade com largura fixa */
 .quantityInput {
-  flex: 0 0 30%; /* ocupa 30% da linha; ajuste conforme necessário */
-  margin: 0; /* removendo a margem padrão para melhor alinhamento */
+  flex: 0 0 30%;
+  margin: 0;
 }
 
-/* Container para o input de Ingrediente com botão delete */
 .inputWithDelete {
   position: relative;
   flex: 1;
@@ -123,11 +108,10 @@ select {
 
 .inputWithDelete input {
   width: 100%;
-  padding-right: 2.5rem; /* espaço para o botão delete */
+  padding-right: 2.5rem;
   box-sizing: border-box;
 }
 
-/* Botão delete posicionado dentro do input */
 .btnDelete {
   position: absolute;
   top: 50%;
@@ -148,29 +132,26 @@ select {
   color: #fff;
 }
 
-/* Layout para linha de passos e sugestões */
 .stepRow {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  padding: 0.625rem; /* 10px */
+  padding: 0.625rem;
   margin: 0 auto;
   align-items: center;
 }
 
-/* Número do passo/sugestão */
 .stepCounter {
-  font-size: 1.875rem; /* 30px */
+  font-size: clamp(1rem, 1.5vw, 1.875rem);
   margin-right: 0.5rem;
 }
 
-/* Botão para adicionar novos itens (ingredientes, passos, sugestões) */
 .addButton {
   width: 100%;
   background-color: transparent;
   color: #fff;
   border: 0.0625rem solid #000;
-  padding: 0.3125rem 0.625rem; /* 5px 10px */
+  padding: 0.3125rem 0.625rem;
   border-radius: 0.3125rem;
   cursor: pointer;
   margin: 0.5rem auto;
@@ -179,7 +160,7 @@ select {
 }
 
 .addButton span {
-  font-size: 2.5rem; /* 40px */
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
   color: #e63946;
 }
 
@@ -191,7 +172,6 @@ select {
   color: #fff;
 }
 
-/* Linha do botão Salvar */
 .saveBtnRow {
   display: flex;
   justify-content: center;
@@ -199,14 +179,13 @@ select {
   margin: 1rem 0;
 }
 
-/* Botão Salvar */
 .saveButton {
-  min-width: 11.9375rem; /* ~191px */
-  max-width: 12.5rem;    /* ~200px */
-  height: 3.8125rem;     /* ~61px */
+  min-width: 11.9375rem;
+  max-width: 12.5rem;
+  height: 3.8125rem;
   background-color: #e63946;
-  border-radius: 1.875rem; /* 30px */
-  font-size: 2.5rem;      /* 40px */
+  border-radius: 1.875rem;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
   cursor: pointer;
   transition: transform 0.3s ease;
   border: none;
@@ -217,36 +196,28 @@ select {
   transform: scale(1.1);
 }
 
-/* Responsividade para telas menores (até 768px) */
 @media (max-width: 48rem) {
   .container {
     padding: 1rem;
   }
-
   .container h1 {
-    font-size: 4rem;
+    font-size: clamp(3rem, 8vw, 6.25rem);
   }
-
   label {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
   }
-
-  input {
+  input,
+  select {
     padding: 0.5rem;
-  }
-  select{
-    padding: 1.75rem; 
   }
   .formRow {
     gap: 1.5rem;
   }
-
   .addButton span {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
   }
-
   .saveButton {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
     min-width: 10rem;
     height: 3.5rem;
   }
