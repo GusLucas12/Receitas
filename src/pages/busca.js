@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import styles from './busca.module.css';
+import FeedbackMessage from "../components/feedback";
 
 function Busca() {
     const [searchParams] = useSearchParams();
@@ -8,8 +9,9 @@ function Busca() {
     const [recipeQuery, setRecipeQuery] = useState(initialRecipe);
     const [recipeData, setRecipeData] = useState(null);
     const [showPopup, setShowPopup] = useState(false);
-    const [feedbackMessages, setFeedbackMessages] = useState([]); // Mensagens de erro ou sucesso
-    const [feedbackType, setFeedbackType] = useState(""); // Tipo de feedback: "error" ou "success"
+    const [feedbackMessages, setFeedbackMessages] = useState([]);
+    const [feedbackType, setFeedbackType] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if (initialRecipe) {
@@ -28,12 +30,13 @@ function Busca() {
     };
 
     const fetchRecipe = async (query) => {
+        setIsLoading(true);
         const text = `me de uma receita de ${query}, se limite a apenas uma receita por vez , 
         todas as respostas precisam estar relacionadas a receitas, priorizando as brasileiras 
         tradicionais e receitas internacionais amplamente conhecidas. As respostas devem ser apresentadas
         exclusivamente no formato JSON. Sempre formate as respostas com nome, tempo_de_preparo, 
         dificuldade (Fácil, Média e Difícil), ingredientes(ingrediente , quantidade), passos e sustentaveis(
-        nesse campo me forneça sugestões sustentaveis do que fazer com restos , sobras dos ingredientes e etc ).   `;
+        nesse campo me forneça sugestões sustentaveis do que fazer com restos , sobras dos ingredientes e etc ).`;
 
         try {
             const response = await fetch("https://backend-engsoft.onrender.com/askthequestion", {
@@ -45,14 +48,14 @@ function Busca() {
             });
 
             let rawText = await response.text();
-
             rawText = rawText.replace(/```json|```/g, "").trim();
-
             const jsonResponse = JSON.parse(rawText);
             setRecipeData(jsonResponse);
         } catch (error) {
             addFeedbackMessage("Erro ao buscar a receita. Tente novamente.", "error");
             console.error("Erro ao buscar a receita:", error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -140,19 +143,7 @@ function Busca() {
                     </form>
                 </div>
 
-                {feedbackMessages.length > 0 && (
-                    <div
-                        className={`${styles.feedbackContainer} ${
-                            feedbackType === "success" ? styles.success : styles.error
-                        }`}
-                    >
-                        {feedbackMessages.map((msg, index) => (
-                            <p key={index} className={styles.feedbackMessage}>
-                                {msg}
-                            </p>
-                        ))}
-                    </div>
-                )}
+                <FeedbackMessage messages={feedbackMessages} type={feedbackType} loading={isLoading} />
 
                 <div className={styles.telaDeBusca}>
                     {recipeData && (
@@ -167,8 +158,14 @@ function Busca() {
                             <div className={styles.recipeDetails}>
                                 <h1>{recipeData.nome}</h1>
                                 <div className={styles.recipeContext}>
-                                    <p><strong>Tempo de preparo:</strong> <span>{recipeData.tempo_de_preparo}</span> </p>
-                                    <p><strong>Dificuldade:</strong> <span> {recipeData.dificuldade} </span></p>
+                                    <p>
+                                        <strong>Tempo de preparo:</strong>{" "}
+                                        <span>{recipeData.tempo_de_preparo}</span>
+                                    </p>
+                                    <p>
+                                        <strong>Dificuldade:</strong>{" "}
+                                        <span>{recipeData.dificuldade}</span>
+                                    </p>
                                 </div>
 
                                 <div className={styles.ingredientes}>
@@ -206,7 +203,9 @@ function Busca() {
             {showPopup && (
                 <div className={styles.popup}>
                     <div className={styles.popupContent}>
-                        <button className={styles.closeButton} onClick={closePopup}>✖</button>
+                        <button className={styles.closeButton} onClick={closePopup}>
+                            ✖
+                        </button>
                         <h2>Adicionar aos Favoritos</h2>
                         <input
                             type="text"
@@ -214,7 +213,9 @@ function Busca() {
                             readOnly
                             className={styles.popupInput}
                         />
-                        <button className={styles.saveButton} onClick={handleSave}>Salvar</button>
+                        <button className={styles.saveButton} onClick={handleSave}>
+                            Salvar
+                        </button>
                     </div>
                 </div>
             )}
