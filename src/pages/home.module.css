@@ -12,13 +12,8 @@
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-<<<<<<< HEAD
-  min-height: 44.5rem;
-  padding: 0rem;
-=======
   min-height: 48.5rem;
   padding: 1rem;
->>>>>>> 8c9b5a1e528968a45fce7ffe07b708674d221da8
 }
 
 .box {
