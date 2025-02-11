@@ -1,23 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Galada&family=Poetsen+One&display=swap');
 
-<<<<<<< HEAD
-header {
-  width: 100%;
-  height: 6.93rem; /* 120px */
-  background-color: #FFF9C4;
-}
-
-header > .interface {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap; /* Permite quebra de linha em telas pequenas */
-  padding: 0 1rem;
-}
-
-.link {
-  text-decoration: none;
-=======
 /* Estilização do header */
 .header {
     width: 100%;
@@ -31,110 +13,10 @@ header > .interface {
     justify-content: space-between;
     align-items: center;
     padding: 0 3.125rem; /* 50px de padding lateral */
->>>>>>> 8c9b5a1e528968a45fce7ffe07b708674d221da8
 }
 
 /* Logo/Título */
 .texto {
-<<<<<<< HEAD
-  margin-left: 3.125rem; /* 50px */
-  margin-top: 1.25rem;   /* 20px */
-}
-
-.texto h1 {
-  color: #000000;
-  text-decoration: none;
-  font-family: "Galada", cursive;
-  font-weight: 400;
-  font-size: 2rem;       /* 32px */
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-/* Aplicar hover diretamente no h1 da seção .texto */
-.texto h1:hover {
-  transform: scale(1.05);
-}
-
-.custom_link {
-  text-decoration: none;
-  color: inherit;
-}
-
-.app {
-  color: #b60101;
-}
-
-.botao {
-  text-decoration: none; /* Remove o sublinhado */
-  color: inherit; 
-  display: flex;
-  align-items: center;
-  gap: 1.875rem;         /* 30px */
-  border-bottom: 0.125rem solid #e63946; /* 2px */
-  border-top: 0.125rem solid #e63946;    /* 2px */
-  margin-right: 1.875rem;  /* 30px */
-}
-
-.botao h1 {
-  font-family: 'Playfair Display', serif;
-  text-decoration: none;
-  font-size: 1.5rem;       /* 24px */
-  color: #e63946;
-  font-weight: bold;
-}
-
-.botao a:hover {
-  transform: scale(1.05);
-}
-
-.user {
-  font-size: 1.25rem;      /* 20px */
-  color: #e63946;
-  cursor: pointer;
-}
-
-@media (max-width: 48rem) {
-  header {
-    height: 6.25rem; /* 100px */
-  }
-  
-  header > .interface {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .texto {
-    margin-left: 0;
-    margin-top: 1rem;
-    text-align: center;
-  }
-  
-  .botao {
-    margin-right: 0;
-    margin-top: 1rem;
-    gap: 1.25rem; /* Reduz o gap para 20px */
-  }
-}
-
-/* Para telas até 30rem (aprox. 480px) */
-@media (max-width: 30rem) {
-  header {
-    height: 5rem; /* 80px */
-  }
-  
-  .texto h1 {
-    font-size: 1.5rem; /* 24px */
-  }
-  
-  .botao h1 {
-    font-size: 1.25rem; /* 20px */
-  }
-  
-  .user {
-    font-size: 1rem; /* 16px */
-  }
-=======
     margin-top: 1.25rem; /* 20px */
 }
 
@@ -272,5 +154,4 @@ header > .interface {
     .sideMenu {
         display: none;
     }
->>>>>>> 8c9b5a1e528968a45fce7ffe07b708674d221da8
 }
