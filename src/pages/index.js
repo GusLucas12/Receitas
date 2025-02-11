@@ -19,8 +19,8 @@ function Home() {
     };
 
     return (
-        <div>
-            <div className={styles.main}>
+        <div className={styles.main}>
+            
                 <main>
                     <div className={styles.box}>
                         <h1>Receitas++</h1>
@@ -41,7 +41,7 @@ function Home() {
                         </form>
                     </div>
                 </main>
-            </div>
+            
         </div>
     );
 }
