@@ -1,46 +1,118 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./login.module.css";
 import InputField from "../components/input";
+import FeedbackMessage from "../components/feedback";
 
 const Button = ({ text, onClick, variant = "primary" }) => (
-    <button
-        onClick={onClick}
-        className={`${styles.button} ${variant === "primary" ? styles.primary : styles.secondary}`}
-    >
-        {text}
-    </button>
+  <button
+    onClick={onClick}
+    className={`${styles.button} ${variant === "primary" ? styles.primary : styles.secondary}`}
+  >
+    {text}
+  </button>
 );
 
 export default function CadastrarPage() {
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [feedbackMessages, setFeedbackMessages] = useState([]);
+  const [feedbackType, setFeedbackType] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    const [showPassword, setShowPassword] = useState(false);
-    return (
-        <div className={styles.container}>
-            <div className={styles.card}>
-                <h1 className={styles.title}>Receitas++</h1>
-                <h2 className={styles.heading}>Entrar</h2>
+  const createUser = async (name, email, password) => {
+    const response = await fetch("https://backend-engsoft.onrender.com/user/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, password }),
+    });
+    if (!response.ok) {
+      throw new Error("Erro ao criar usuário");
+    }
+    return await response.text();
+  };
 
-                <div className={styles.infoContainer}>
-                    <InputField label="Nome" type="name" placeholder="Remy Ratatouile" />
-                    <InputField label="E-mail" type="email" placeholder="remy@cozinha.com" />
-                    <InputField
-                        label="Senha"
-                        type={showPassword ? "text" : "password"}
-                        placeholder="********"
-                        isPassword={true}
-                        toggleVisibility={() => setShowPassword(!showPassword)}
-                    />
-                     <InputField
-                        label="Confirmar Senha"
-                        type={showPassword ? "text" : "password"}
-                        placeholder="********"
-                        isPassword={true}
-                        toggleVisibility={() => setShowPassword(!showPassword)}
-                    />
-                 
-                </div>
-                <Button text="Cadastrar" variant="primary" />
-            </div>
+  const handleRegister = async () => {
+    setFeedbackMessages([]);
+    setFeedbackType("");
+    if (!name.trim() || !email.trim() || !password.trim() || !confirmPassword.trim()) {
+      setFeedbackMessages(["Preencha todos os campos."]);
+      setFeedbackType("error");
+      return;
+    }
+    if (password !== confirmPassword) {
+      setFeedbackMessages(["As senhas não correspondem."]);
+      setFeedbackType("error");
+      return;
+    }
+    try {
+      setLoading(true);
+      await createUser(name, email, password);
+      setLoading(false);
+      setFeedbackMessages(["Usuário cadastrado com sucesso! Redirecionando para o login..."]);
+      setFeedbackType("success");
+      setName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      setTimeout(() => {
+        navigate("/login");
+      }, 5000);
+    } catch (error) {
+      setLoading(false);
+      setFeedbackMessages([`Erro: ${error.message}`]);
+      setFeedbackType("error");
+    }
+  };
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <h1 className={styles.title}>Receitas++</h1>
+        <h2 className={styles.heading}>Cadastrar</h2>
+        <div className={styles.infoContainer}>
+          <InputField
+            label="Nome"
+            type="text"
+            placeholder="Remy Ratatouille"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <InputField
+            label="E-mail"
+            type="email"
+            placeholder="remy@cozinha.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <InputField
+            label="Senha"
+            type={showPassword ? "text" : "password"}
+            placeholder="********"
+            isPassword={true}
+            toggleVisibility={() => setShowPassword(!showPassword)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <InputField
+            label="Confirmar Senha"
+            type={showPassword ? "text" : "password"}
+            placeholder="********"
+            isPassword={true}
+            toggleVisibility={() => setShowPassword(!showPassword)}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
         </div>
-    );
+        <FeedbackMessage messages={feedbackMessages} type={feedbackType} loading={loading} />
+        <Button text="Cadastrar" onClick={handleRegister} variant="primary" />
+      </div>
+    </div>
+  );
 }
