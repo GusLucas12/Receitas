@@ -4,14 +4,15 @@
   
   .main {
     background-color: #D2B48C;
-    min-height: 55.4rem; /* aproximadamente 886px */
+    min-height: 55.4rem;
     width: 100%;
     overflow: auto;
   }
   
   .container {
-    width: 100%;
-    max-width: 80rem; /* 1280px */
+    width: 80%;
+    max-width: 80rem;
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -21,7 +22,7 @@
   
   .title {
     width: 100%;
-    font-size: 2.25rem; /* 36px */
+    font-size: 2.25rem;
     margin-bottom: 1.25rem;
     padding: 0.625rem;
     text-align: start;
@@ -33,31 +34,10 @@
   .cardsRow {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 3.125rem; /* 50px */
+    gap: 3.125rem;
     width: 100%;
     justify-items: center;
     margin-bottom: 1.75rem;
-  }
-  
-  .cardAdd {
-    background-color: #f0f0f0;
-    border: 0.125rem dashed #000;
-    border-radius: 1.25rem;
-    min-width: 26.25rem; /* 420px */
-    min-height: 21.625rem; /* 346px */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Playfair Display";
-    font-size: 3rem; /* 48px */
-    font-style: normal;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  .cardAdd:hover {
-    transform: scale(1.05);
-    background-color: #dcdcdc;
   }
   
   @media (max-width: 64rem) {
@@ -82,11 +62,33 @@
       grid-template-columns: 1fr;
       gap: 1rem;
     }
-    .cardAdd {
-      min-width: 100%;
-      min-height: auto;
-      padding: 1rem;
-      font-size: 2.5rem;
-    }
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 2rem;
+  }
+  
+  .pageButton {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #D2B48C;
+    border: 0.125rem solid #000;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .pageButton:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+  
+  .activePage {
+    background-color: #e63946;
+    color: #fff;
   }
   
