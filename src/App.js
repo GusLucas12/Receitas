@@ -58,7 +58,7 @@ function App() {
           </PublicRoute>
         } />
       </Routes>
-      <Footer />
+ 
     </div>
   );
 }
