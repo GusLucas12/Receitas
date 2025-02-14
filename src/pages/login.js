@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useUser } from "../components/user"; 
+
 import styles from "./login.module.css";
 import InputField from "../components/input";
 import FeedbackMessage from "../components/feedback";
@@ -36,22 +36,6 @@ const loginUser = async (email, password) => {
   }
 };
 
-const getUserInfo = async (email) => {
-  const response = await fetch(
-    `https://backend-engsoft.onrender.com/user/get?email=${email}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  if (!response.ok) {
-    throw new Error("Erro ao obter informações do usuário");
-  }
-  return await response.json();
-};
-
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,7 +45,6 @@ export default function LoginPage() {
   const [type, setType] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { setUser } = useUser();
 
   const handleLogin = async () => {
     setMessages([]);
@@ -76,12 +59,12 @@ export default function LoginPage() {
       setMessages(["Login realizado com sucesso!"]);
       setType("success");
       localStorage.setItem("authToken", timestamp);
+
+      localStorage.setItem("userEmail", email);
       if (stayConnected) {
         localStorage.setItem("stayConnected", "true");
       }
    
-      const userInfo = await getUserInfo(email);
-      setUser(userInfo);
       setTimeout(() => {
         navigate("/");
       }, 2000);

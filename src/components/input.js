@@ -1,10 +1,14 @@
 import styles from "./input.module.css";
 
-const InputField = ({ label, type, placeholder, isPassword, toggleVisibility, value, onChange }) => (
+const InputField = ({ label, type, placeholder, isPassword, toggleVisibility, value, onChange, name }) => (
   <div className={styles.inputContainer}>
-    <label className={styles.label}>{label}</label>
+    <label htmlFor={name} className={styles.label}>
+      {label}
+    </label>
     <div className={styles.passwordWrapper}>
       <input
+        id={name}
+        name={name} // Importante para identificar qual campo está sendo alterado
         type={type}
         placeholder={placeholder}
         value={value}
