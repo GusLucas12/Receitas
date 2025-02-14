@@ -83,6 +83,7 @@ function Busca() {
       addFeedbackMessage("Erro: Nenhuma receita encontrada ou título está vazio.", "error");
       return;
     }
+    const email = localStorage.getItem("userEmail");
     const data = {
       name: titulo,
       ingredients: recipeData.ingredientes.map((ing) => `${ing.quantidade} ${ing.ingrediente}`).join(", "),
@@ -90,7 +91,8 @@ function Busca() {
       difficulty: recipeData.dificuldade,
       prepareMode: recipeData.passos.map((passo) => ` ${passo}`).join("\n"),
       sustentable: recipeData.sustentaveis.map((item) => ` ${item}`).join("\n"),
-      isIa: true
+      isIa: true,
+      user: email
     };
     try {
       const response = await fetch("https://backend-engsoft.onrender.com/createRecipe", {

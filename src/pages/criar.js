@@ -105,10 +105,10 @@ function Criar() {
 
     setLoading(true);
     setFeedbackMessages([]);
-
+    const email = localStorage.getItem("userEmail");
     const data = {
       name: titulo,
-      user: "123",
+      user: email,
       ingredients: ingredients
         .map((ing) => `${ing.quantidade} ${ing.ingrediente}`)
         .join(", "),
