@@ -112,7 +112,15 @@
 .closeButton:hover {
     transform: rotate(90deg);
 }
-
+.logout{
+    background-color: #e63946;
+    font-family: 'Playfair Display';
+    color: #000;
+    border-radius: 30px;
+    font-size: 1.5rem;
+    margin-top: 5px;
+    text-align: center;
+}
 /* Conteúdo do menu lateral */
 .sideMenuContent {
     display: flex;

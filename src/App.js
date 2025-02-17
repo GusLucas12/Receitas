@@ -31,21 +31,30 @@ const PublicRoute = ({ children }) => {
 
 function App() {
   useTokenExpirationCheck();
-  
+
   return (
     <div>
       <Top />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/busca' element={<Busca />} />
-        <Route path='/receitas' element={<Receitas />} />
-        <Route path='/criar' element={<Criar />} />
+        <Route path='/receitas' element={
+          <ProtectedRoute>
+            <Receitas />
+          </ProtectedRoute>} />
+        <Route path='/criar' element={
+          <ProtectedRoute>
+            <Criar />
+          </ProtectedRoute>} />
         <Route path='/usuario' element={
           <ProtectedRoute>
             <Usuario />
           </ProtectedRoute>
         } />
-        <Route path='/editar' element={<Editar />} />
+        <Route path='/editar' element={
+          <ProtectedRoute>
+            <Editar />
+          </ProtectedRoute>} />
         <Route path="/editarReceita/:id" element={<EditarReceitas />} />
         <Route path='/login' element={
           <PublicRoute>
@@ -58,7 +67,7 @@ function App() {
           </PublicRoute>
         } />
       </Routes>
- 
+
     </div>
   );
 }

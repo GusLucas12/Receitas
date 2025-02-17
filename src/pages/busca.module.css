@@ -123,6 +123,30 @@
   transform: scale(1.2);
 }
 
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  top: 3rem; /* Ajustado para aparecer logo abaixo do botão */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+
+/* Exibir o tooltip quando o botão for hover */
+.favoriteButton:hover + .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+
 .popup {
   position: fixed;
   top: 50%;

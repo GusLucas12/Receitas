@@ -1,22 +1,21 @@
 .container {
     display: flex;
     flex-direction: column;
-
     background-color: #D2B48C;
     width: 100%;
-    min-height: 761px;
-    padding: 20px;
+    min-height: 47.6rem; /* 761px ≈ 47.6rem */
+    padding: 1.25rem; /* 20px */
     font-family: 'Playfair Display';
     color: #e63946;
- 
     box-sizing: border-box;
     overflow: auto;
     max-height: 100vh;
 }
+
 .perfilContainer {
     font-family: Arial, sans-serif;
-    border-bottom: 1px solid #e63946;
-    padding: 20px;
+    border-bottom: 0.0625rem solid #e63946; /* 1px */
+    padding: 1.25rem; /* 20px */
 }
 
 .perfilDetails {
@@ -26,23 +25,24 @@
 }
 
 .fotoNome {
-
     display: flex;
     align-items: center;
-
 }
-.fotoNome h1{
+
+.fotoNome h1 {
     margin: 0;
-    font-size: 96px;
+    font-size: 6rem; /* 96px */
     font-weight: 300;
 }
+
 .foto {
-    width: 318px;
-    height: 275px;
+    width: 19.88rem;  /* 318px */
+    height: 17.19rem; /* 275px */
     border-radius: 50%;
     background-color: #cccccc;
-    margin-right: 15px;
+    margin-right: 0.94rem; /* 15px */
 }
+
 .nomeBadge {
     display: flex;
     flex-direction: column;
@@ -51,71 +51,147 @@
 
 .badge {
     background-color: #e63946;
-    width: 191px;
-    height: 61px;
+    width: 11.94rem;  /* 191px */
+    height: 3.81rem;  /* 61px */
     color: #000;
-    border-radius: 30px;
-    font-size: 40px;
-    margin-top: 5px;
+    border-radius: 1.875rem; /* 30px */
+    font-size: 2.5rem; /* 40px */
+    margin-top: 0.3125rem; /* 5px */
     text-align: center;
 }
+
 .editarPerfil {
     background: none;
     border: none;
-    font-size: 20px;
+    font-size: 1.25rem; /* 20px */
     cursor: pointer;
 }
+
 .descricao {
-    margin: 20px 0;
+    margin: 3.125rem; /* 50px em todos os lados */
     background-color: #fff2e6;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #d9a774;
-    margin: 50px 50px;
+    padding: 0.625rem; /* 10px */
+    border-radius: 0.5rem; /* 8px */
+    border: 0.0625rem solid #d9a774; /* 1px */
 }
+
 .descricao h3 {
     margin: 0;
     color: #a52a2a;
 }
-.scroll{
+
+/* ================= Carousel e Paginação ================= */
+
+/* Container do Carousel */
+.carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.25rem; /* Espaçamento opcional */
+}
+
+/* Container dos Itens do Carousel */
+.carouselItems {
+    display: flex;
+    gap: 1rem;
+    overflow: hidden;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+/* Botões de navegação do Carousel */
+.carouselButton {
+    background: none;
+    border: 0.125rem solid #e63946;
+    border-radius: 50%;
+    padding: 0.5rem 0.75rem;
+    font-size: 2rem;
+    color: #e63946;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.carouselButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.carouselButton:hover:not(:disabled) {
+    background-color: #e63946;
+    color: #fff;
+}
+
+/* Estilo para a rolagem horizontal, se necessário */
+.scroll {
     font-family: 'Playfair Display', serif;
     color: #000;
-   
     display: flex;
-    overflow-x: auto; 
-    gap: 16px; 
-    padding: 10px;
+    overflow-x: auto;
+    gap: 1rem; /* 16px */
+    padding: 0.625rem; /* 10px */
     scroll-behavior: smooth;
 }
 
-.scrollContainer::-webkit-scrollbar-track::-webkit-scrollbar {
-    height: 8px;
+.scroll::-webkit-scrollbar {
+    height: 0.5rem; /* 8px */
 }
 
 .scroll::-webkit-scrollbar-thumb {
     background: #ccc;
-    border-radius: 4px;
+    border-radius: 0.25rem; /* 4px */
 }
 
 .scroll::-webkit-scrollbar-track {
     background: #f4f4f4;
 }
 
+/* Botão para adicionar um novo card */
 .cardAdd {
     background-color: #f0f0f0;
-    border: 2px dashed #000000;
-    border-radius: 20px;
-    min-width: 420px;
-    min-height: 346px;
+    border: 0.125rem dashed #000000; /* 2px */
+    border-radius: 1.25rem; /* 20px */
+    min-width: 26.25rem; /* 420px */
+    min-height: 21.63rem; /* 346px */
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Playfair Display';
-    font-size: 48px;
+    font-size: 3rem; /* 48px */
     font-style: normal;
     cursor: pointer;
-    transition: transform 0.2s ease-in-out;}
+    transition: transform 0.2s ease-in-out;
+}
 
 .cardAdd:hover {
     border-color: #999;
+}
+
+/* Estilos de Paginação */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 0.5rem;
+}
+
+.pageButton {
+    background-color: #f0f0f0;
+    border: 0.125rem solid #ccc;
+    border-radius: 0.3125rem; /* 5px */
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.pageButton:hover {
+    background-color: #e63946;
+    color: #fff;
+}
+
+.activePage {
+    background-color: #e63946;
+    color: #fff;
+    border-color: #e63946;
 }

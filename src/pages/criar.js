@@ -10,7 +10,7 @@ function Criar() {
   const [steps, setSteps] = useState([{ id: 1, descricao: "" }]);
   const [sustentaveis, setSustentaveis] = useState([{ id: 1, descricao: "" }]);
 
-  // Estados para feedback e carregamento
+
   const [loading, setLoading] = useState(false);
   const [feedbackMessages, setFeedbackMessages] = useState([]);
   const [feedbackType, setFeedbackType] = useState("");
@@ -18,7 +18,7 @@ function Criar() {
   const { userData, error: userError, loading: userLoading, getUserInfo } =
     useUserInfo();
 
-  // Chama o getUserInfo ao montar o componente
+  
   useEffect(() => {
     getUserInfo();
   }, [getUserInfo]);
@@ -87,7 +87,7 @@ function Criar() {
       (item) => !item.descricao.trim()
     );
 
-    // Acumula todos os erros em um array
+
     const errors = [];
     if (!titulo) {
       errors.push("O campo Título é obrigatório.");
@@ -105,17 +105,17 @@ function Criar() {
       errors.push("Preencha todos os campos das sugestões sustentáveis.");
     }
 
-    // Se houver erros, exibe o feedback e não prossegue
     if (errors.length > 0) {
       setFeedbackType("error");
       setFeedbackMessages(errors);
       return;
     }
 
-    // Verifica se o userData e seu id estão disponíveis
     if (!userData || !userData.id) {
       setFeedbackType("error");
-      setFeedbackMessages(["Erro: usuário não autenticado. Faça login novamente."]);
+      setFeedbackMessages([
+        "Erro: usuário não autenticado. Faça login novamente.",
+      ]);
       return;
     }
 
@@ -124,7 +124,7 @@ function Criar() {
 
     const data = {
       name: titulo,
-      userId: "1",
+      userId: userData.id, 
       ingredients: ingredients
         .map((ing) => `${ing.quantidade} ${ing.ingrediente}`)
         .join(", "),
@@ -150,18 +150,34 @@ function Criar() {
         }
       );
 
+   
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(
-          errorData.message || "Erro ao salvar a receita. Tente novamente."
-        );
+        let errorMessage;
+        const errorContentType = response.headers.get("content-type");
+        if (errorContentType && errorContentType.includes("application/json")) {
+          const errorData = await response.json();
+          errorMessage =
+            errorData.message || "Erro ao salvar a receita. Tente novamente.";
+        } else {
+          errorMessage = await response.text();
+        }
+        throw new Error(errorMessage);
       }
 
-      const result = await response.json();
+      let result;
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        result = await response.json();
+        setFeedbackMessages([
+          `Receita salva com sucesso: ${
+            result.message || "Sem mensagem adicional"
+          }`,
+        ]);
+      } else {
+        result = await response.text();
+        setFeedbackMessages([`Receita salva com sucesso`]);
+      }
       setFeedbackType("success");
-      setFeedbackMessages([
-        `Receita salva com sucesso: ${result.message || "Sem mensagem adicional"}`,
-      ]);
     } catch (error) {
       setFeedbackType("error");
       setFeedbackMessages([error.message]);

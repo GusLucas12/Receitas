@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import styles from "./busca.module.css";
 import FeedbackMessage from "../components/feedback";
-
+import useUserInfo from "../components/user";
 function Busca() {
   const [searchParams] = useSearchParams();
   const initialRecipe = searchParams.get("query") || "";
@@ -12,6 +12,7 @@ function Busca() {
   const [feedbackMessages, setFeedbackMessages] = useState([]);
   const [feedbackType, setFeedbackType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
     if (initialRecipe) {
@@ -23,6 +24,22 @@ function Busca() {
     setFeedbackMessages((prev) => [...prev, message]);
     setFeedbackType(type);
   };
+  const mapDifficulty = (difficulty) => {
+    const difficultyMap = {
+      "easy": "Fácil",
+      "medium": "Média",
+      "hard": "Difícil",
+    };
+    return difficultyMap[difficulty] || difficulty;
+  };
+  const { userData, error: userError, loading: userLoading, getUserInfo } =
+    useUserInfo();
+
+
+  useEffect(() => {
+    getUserInfo();
+  }, [getUserInfo]);
+
 
   const clearFeedbackMessages = () => {
     setFeedbackMessages([]);
@@ -35,7 +52,7 @@ function Busca() {
         todas as respostas precisam estar relacionadas a receitas, priorizando as brasileiras 
         tradicionais e receitas internacionais amplamente conhecidas. As respostas devem ser apresentadas
         exclusivamente no formato JSON. Sempre formate as respostas com nome, tempo_de_preparo, 
-        dificuldade (Fácil, Média e Difícil), ingredientes(ingrediente , quantidade), passos e sustentaveis(
+        dificuldade (easy, medium e hard), ingredientes(ingrediente , quantidade), passos e sustentaveis(
         nesse campo me forneça sugestões sustentaveis do que fazer com restos , sobras dos ingredientes e etc ).`;
     try {
       const response = await fetch("https://backend-engsoft.onrender.com/askthequestion", {
@@ -49,7 +66,7 @@ function Busca() {
       setRecipeData(jsonResponse);
     } catch (error) {
       addFeedbackMessage("Erro ao buscar a receita. Tente novamente.", "error");
-    
+
     } finally {
       setIsLoading(false);
     }
@@ -83,7 +100,7 @@ function Busca() {
       addFeedbackMessage("Erro: Nenhuma receita encontrada ou título está vazio.", "error");
       return;
     }
-    const email = localStorage.getItem("userEmail");
+
     const data = {
       name: titulo,
       ingredients: recipeData.ingredientes.map((ing) => `${ing.quantidade} ${ing.ingrediente}`).join(", "),
@@ -92,7 +109,7 @@ function Busca() {
       prepareMode: recipeData.passos.map((passo) => ` ${passo}`).join("\n"),
       sustentable: recipeData.sustentaveis.map((item) => ` ${item}`).join("\n"),
       isIa: true,
-      userId:  1
+      userId: userData.id
     };
     try {
       const response = await fetch("https://backend-engsoft.onrender.com/createRecipe", {
@@ -131,9 +148,16 @@ function Busca() {
         <div className={styles.telaDeBusca}>
           {recipeData && (
             <>
-              <button onClick={handleAddToFavorites} className={styles.favoriteButton}>
-                ⭐
-              </button>
+             <div
+                className={styles.tooltipContainer}
+                onMouseEnter={() => setShowTooltip(true)}
+                onMouseLeave={() => setShowTooltip(false)}
+              >
+                <button onClick={handleAddToFavorites} className={styles.favoriteButton}>
+                  ⭐
+                </button>
+                {showTooltip && <span className={styles.tooltip}>Adicionar aos favoritos</span>}
+              </div>
               <div className={styles.recipeDetails}>
                 <h1>{recipeData.nome}</h1>
                 <div className={styles.recipeContext}>
@@ -143,7 +167,7 @@ function Busca() {
                   </p>
                   <p>
                     <strong>Dificuldade:</strong>{" "}
-                    <span>{recipeData.dificuldade}</span>
+                    <span>{mapDifficulty(recipeData.dificuldade)}</span>
                   </p>
                 </div>
                 <div className={styles.ingredientes}>

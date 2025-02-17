@@ -44,7 +44,7 @@ function Receitas() {
       setLoading(true);
       try {
         const response = await fetch(
-          `https://backend-engsoft.onrender.com/getById?id=${userData.id}`
+          `https://backend-engsoft.onrender.com/getByUserId?userId=${userData.id}`
         );
         if (!response.ok) {
           throw new Error("Erro ao buscar receitas");
