@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; 
 import styles from "./criar.module.css";
 import FeedbackMessage from "../components/feedback";
+import useUserInfo from "../components/user";
 
 function Criar() {
   const [ingredients, setIngredients] = useState([
@@ -13,6 +14,14 @@ function Criar() {
   const [loading, setLoading] = useState(false);
   const [feedbackMessages, setFeedbackMessages] = useState([]);
   const [feedbackType, setFeedbackType] = useState("");
+
+  const { userData, error: userError, loading: userLoading, getUserInfo } =
+    useUserInfo();
+
+  // Chama o getUserInfo ao montar o componente
+  useEffect(() => {
+    getUserInfo();
+  }, [getUserInfo]);
 
   const addSustentavel = () => {
     setSustentaveis([...sustentaveis, { id: Date.now(), descricao: "" }]);
@@ -103,12 +112,19 @@ function Criar() {
       return;
     }
 
+    // Verifica se o userData e seu id estão disponíveis
+    if (!userData || !userData.id) {
+      setFeedbackType("error");
+      setFeedbackMessages(["Erro: usuário não autenticado. Faça login novamente."]);
+      return;
+    }
+
     setLoading(true);
     setFeedbackMessages([]);
-    const email = localStorage.getItem("userEmail");
+
     const data = {
       name: titulo,
-      user: email,
+      userId: "1",
       ingredients: ingredients
         .map((ing) => `${ing.quantidade} ${ing.ingrediente}`)
         .join(", "),
@@ -162,7 +178,7 @@ function Criar() {
         <FeedbackMessage
           messages={feedbackMessages}
           type={feedbackType}
-          loading={loading}
+          loading={loading || userLoading}
         />
         <div className={styles.form}>
           {/* Título */}

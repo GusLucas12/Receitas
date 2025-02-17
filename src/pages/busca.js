@@ -92,7 +92,7 @@ function Busca() {
       prepareMode: recipeData.passos.map((passo) => ` ${passo}`).join("\n"),
       sustentable: recipeData.sustentaveis.map((item) => ` ${item}`).join("\n"),
       isIa: true,
-      user: email
+      userId:  1
     };
     try {
       const response = await fetch("https://backend-engsoft.onrender.com/createRecipe", {

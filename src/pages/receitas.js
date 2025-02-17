@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./receitas.module.css";
 import Card from "../components/card.js";
 import FeedbackMessage from "../components/feedback.js";
+import useUserInfo from "../components/user.js";
 
 function Receitas() {
   const [recipes, setRecipes] = useState([]);
@@ -10,6 +11,16 @@ function Receitas() {
   const [feedbackType, setFeedbackType] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
+
+
+  const { userData, error: userError, loading: userLoading, getUserInfo } =
+    useUserInfo();
+
+ 
+  useEffect(() => {
+    getUserInfo();
+  }, [getUserInfo]);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,12 +36,15 @@ function Receitas() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+
   useEffect(() => {
     const fetchRecipes = async () => {
+
+      if (!userData || !userData.id) return;
       setLoading(true);
       try {
         const response = await fetch(
-          "https://backend-engsoft.onrender.com/getAllRecipes"
+          `https://backend-engsoft.onrender.com/getById?id=${userData.id}`
         );
         if (!response.ok) {
           throw new Error("Erro ao buscar receitas");
@@ -45,8 +59,9 @@ function Receitas() {
       }
     };
     fetchRecipes();
-  }, []);
+  }, [userData]);
 
+ 
   const deleteRecipe = async (id) => {
     setLoading(true);
     try {
@@ -74,6 +89,7 @@ function Receitas() {
       setLoading(false);
     }
   };
+
 
   const indexOfLastRecipe = currentPage * itemsPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - itemsPerPage;
@@ -103,7 +119,7 @@ function Receitas() {
         <FeedbackMessage
           messages={feedbackMessages}
           type={feedbackType}
-          loading={loading}
+          loading={loading || userLoading}
         />
         <div className={styles.cardsRow}>
           {currentRecipes.map((recipe) => (
