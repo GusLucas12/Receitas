@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./login.module.css";
+import styles from "./cadastrar.module.css";
 import InputField from "../components/input";
 import FeedbackMessage from "../components/feedback";
 
