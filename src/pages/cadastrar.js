@@ -7,7 +7,7 @@ import FeedbackMessage from "../components/feedback";
 const Button = ({ text, onClick, variant = "primary" }) => (
   <button
     onClick={onClick}
-    className={`${styles.button} ${variant === "primary" ? styles.primary : styles.secondary}`}
+    className={`${styles.buttonCadastro} ${variant === "primary" ? styles.primary : styles.secondary}`}
   >
     {text}
   </button>
@@ -72,11 +72,11 @@ export default function CadastrarPage() {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.card}>
-        <h1 className={styles.title}>Receitas++</h1>
-        <h2 className={styles.heading}>Cadastrar</h2>
-        <div className={styles.infoContainer}>
+    <div className={styles.containerCadastro}>
+      <div className={styles.cardCadastro}>
+        <h1 className={styles.titleCadastro}>Receitas++</h1>
+        <h2 className={styles.headingCadastro}>Cadastrar</h2>
+        <div className={styles.infoContainerCadastro}>
           <InputField
             label="Nome"
             type="text"
