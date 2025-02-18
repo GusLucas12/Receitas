@@ -1,87 +1,98 @@
 :root {
-    font-size: clamp(12px, 1.5vw, 16px);
-  }
-  
+  font-size: clamp(12px, 1.5vw, 16px);
+}
+
+.card {
+  background-color: #e63946;
+  border: 0.125rem solid #000;
+  border-radius: 1.25rem;
+  width: 26.25rem;
+  height: 21.625rem;
+  margin: 0.625rem 0.625rem 0.625rem 2.25rem;
+  font-family: 'Playfair Display', serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+.custom_link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.titulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+
+.titulo h2 {
+  margin: 0;
+  font-size: 2rem;
+  padding-right: 2rem; /* Espaço para evitar que o título encoste no botão delete */
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.star {
+  font-size: 1.5rem;
+  color: gold;
+  margin-bottom: 0.25rem; /* Espaço entre a estrela e o botão */
+}
+
+.trashButton {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.text {
+  padding-top: 3.125rem;
+  margin: 0.5rem 0;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+
+.text span {
+  color: #fff;
+}
+
+@media (max-width: 64rem) {
   .card {
-    background-color: #e63946;
-    border: 0.125rem solid #000;
-    border-radius: 1.25rem;
-    width: 26.25rem;
-    height: 21.625rem;
-    margin: 0.625rem 0.625rem 0.625rem 2.25rem;
-    font-family: 'Playfair Display', serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: auto;
-    box-sizing: border-box;
-  }
-  
-  .custom_link {
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .titulo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    width: 100%;
-  }
-  
-  .titulo h2 {
-    margin: 0;
-    font-size: 2rem;
-    padding-right: 2rem; /* Espaço para evitar que o título encoste no botão delete */
-  }
-  
-  .trashButton {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    font-size: 1.2em;
-    cursor: pointer;
-  }
-  
-  .text {
-    padding-top: 3.125rem;
-    margin: 0.5rem 0;
-    font-size: clamp(1rem, 2vw, 1.5rem);
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    text-align: center;
-  }
-  
-  .text span {
-    color: #fff;
-  }
-  
-  @media (max-width: 64rem) {
-    .card {
       width: 20rem;
       height: 16.5rem;
-    }
-    .titulo h2 {
+  }
+  .titulo h2 {
       font-size: 2.5rem;
       padding-right: 1.5rem;
-    }
   }
-  
-  @media (max-width: 48rem) {
-    .card {
+}
+
+@media (max-width: 48rem) {
+  .card {
       width: 90%;
       aspect-ratio: 26.25 / 21.625;
-    }
-    .titulo h2 {
+  }
+  .titulo h2 {
       font-size: 2rem;
       padding-right: 1.5rem;
-    }
   }
-  
+}
