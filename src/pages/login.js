@@ -7,7 +7,7 @@ import FeedbackMessage from "../components/feedback";
 const Button = ({ text, onClick, variant = "primary" }) => (
   <button
     onClick={onClick}
-    className={`${styles.buttonLogin} ${
+    className={`${styles.button} ${
       variant === "primary" ? styles.primary : styles.secondary
     }`}
   >
@@ -76,14 +76,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className={styles.containerLogin}>
-      <div className={styles.cardLogin}>
-        <h1 className={styles.titleLogin}>Receitas++</h1>
-        <h2 className={styles.headingLogin}>Entrar</h2>
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <h1 className={styles.title}>Receitas++</h1>
+        <h2 className={styles.heading}>Entrar</h2>
 
         <FeedbackMessage messages={messages} type={type} loading={loading} />
 
-        <div className={styles.infoContainerLogin}>
+        <div className={styles.infoContainer}>
           <InputField
             label="E-mail"
             type="email"
@@ -98,19 +98,19 @@ export default function LoginPage() {
             toggleVisibility={() => setShowPassword(!showPassword)}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <div className={styles.checkboxContainerLogin}>
+          <div className={styles.checkboxContainer}>
             <input
               type="checkbox"
               checked={stayConnected}
               onChange={() => setStayConnected(!stayConnected)}
-              className={styles.checkboxLogin}
+              className={styles.checkbox}
             />
             <span>Permanecer Conectado</span>
           </div>
         </div>
 
         <Button text="Entrar" onClick={handleLogin} />
-        <p className={styles.orTextLogin}>
+        <p className={styles.orText}>
           <span>---------</span>ou<span>---------</span>
         </p>
         <Link to="/cadastrar">
