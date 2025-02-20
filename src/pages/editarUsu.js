@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './editarUsu.module.css';
 import useUserInfo from '../components/user';
 import InputField from '../components/input';
 import FeedbackMessage from '../components/feedback';
 
 function Editar() {
+  const navigate = useNavigate();
   const { userData, error, loading, getUserInfo } = useUserInfo();
   const [showPassword, setShowPassword] = useState(false);
   const [feedback, setFeedback] = useState({ messages: [], type: '' });
@@ -14,6 +16,7 @@ function Editar() {
     password: '',
     confirmPassword: ''
   });
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
 
   useEffect(() => {
     const email = localStorage.getItem('userEmail');
@@ -82,6 +85,38 @@ function Editar() {
     }
   };
 
+
+  const deleteUserAPI = async (id) => {
+    const response = await fetch('https://backend-engsoft.onrender.com/user/delete', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id })
+    });
+    if (!response.ok) {
+      let errorMsg = 'Erro ao deletar o usuário';
+      try {
+        const errorResponse = await response.text();
+        errorMsg = errorResponse;
+      } catch (err) {}
+      throw new Error(errorMsg);
+    }
+    return await response.text();
+  };
+
+  const handleDeleteProfile = async () => {
+    try {
+      
+      await deleteUserAPI(userData.id);
+      setFeedback({ messages: ['Perfil deletado com sucesso!'], type: 'success' });
+
+      localStorage.removeItem('userEmail');
+      localStorage.removeItem('authToken');
+      navigate('/login');
+    } catch (err) {
+      setFeedback({ messages: ['Erro ao deletar o perfil: ' + err.message], type: 'error' });
+    }
+  };
+
   if (loading) {
     return <FeedbackMessage messages={[]} type="" loading={loading} />;
   }
@@ -92,6 +127,18 @@ function Editar() {
 
   return (
     <div className={styles.editProfileContainer}>
+      {/* Botão de lixeira com tooltip */}
+      <div className={styles.trashContainer}>
+        <button
+          type="button"
+          onClick={() => setShowDeletePopup(true)}
+          className={styles.trashButton}
+        >
+          🗑️
+        </button>
+        <span className={styles.tooltip}>Deletar Perfil</span>
+      </div>
+
       <h1>Editar Perfil</h1>
       {feedback.messages.length > 0 && (
         <FeedbackMessage messages={feedback.messages} type={feedback.type} loading={false} />
@@ -138,6 +185,25 @@ function Editar() {
           Salvar
         </button>
       </form>
+
+      {/* Popup de confirmação para deleção */}
+      {showDeletePopup && (
+        <div className={styles.popupOverlay}>
+          <div className={styles.popup}>
+            <p>
+              Tem certeza que deseja deletar seu perfil? Essa ação não pode ser desfeita.
+            </p>
+            <div className={styles.popupButtons}>
+              <button onClick={() => setShowDeletePopup(false)} className={styles.cancelButton}>
+                Cancelar
+              </button>
+              <button onClick={handleDeleteProfile} className={styles.confirmDeleteButton}>
+                Deletar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
