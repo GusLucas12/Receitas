@@ -16,6 +16,20 @@
     font-family: Arial, sans-serif;
     border-bottom: 0.0625rem solid #e63946; /* 1px */
     padding: 1.25rem; /* 20px */
+    position: relative; /* Torna o container pai posicionado */
+}
+
+.editarPerfil {
+    background-color: #e63946;
+    border: 1px solid #000;
+    border-radius: 1.875rem;
+    font-size: 2rem; /* 20px */
+    cursor: pointer;
+    color: #000;
+    padding: 0.5rem;
+    position: absolute; 
+    top: 1.25rem;     
+    right: 1.25rem;   
 }
 
 .perfilDetails {
@@ -39,7 +53,13 @@
     width: 19.88rem;  /* 318px */
     height: 17.19rem; /* 275px */
     border-radius: 50%;
-    background-color: #cccccc;
+    background-image: url('../images/remy.jpg');
+    background-repeat: no-repeat;
+
+    background-position: center; /* Centraliza a imagem */
+    background-size: contain;
+
+    
     margin-right: 0.94rem; /* 15px */
 }
 
@@ -60,15 +80,9 @@
     text-align: center;
 }
 
-.editarPerfil {
-    background: none;
-    border: none;
-    font-size: 1.25rem; /* 20px */
-    cursor: pointer;
-}
 
 .descricao {
-    margin: 3.125rem; /* 50px em todos os lados */
+    margin: 3.125rem; 
     background-color: #fff2e6;
     padding: 0.625rem; /* 10px */
     border-radius: 0.5rem; /* 8px */

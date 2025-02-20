@@ -8,8 +8,6 @@ function Editar() {
   const { userData, error, loading, getUserInfo } = useUserInfo();
   const [showPassword, setShowPassword] = useState(false);
   const [feedback, setFeedback] = useState({ messages: [], type: '' });
-
-  // Estado do formulário
   const [profileData, setProfileData] = useState({
     name: '',
     email: '',
@@ -17,7 +15,6 @@ function Editar() {
     confirmPassword: ''
   });
 
-  // Buscar informações do usuário apenas uma vez quando a página carregar
   useEffect(() => {
     const email = localStorage.getItem('userEmail');
     if (email) {
@@ -25,7 +22,6 @@ function Editar() {
     }
   }, []);
 
-  // Preencher os campos APENAS quando os dados forem carregados pela primeira vez
   useEffect(() => {
     if (userData && profileData.name === '' && profileData.email === '') {
       setProfileData({
@@ -37,52 +33,55 @@ function Editar() {
     }
   }, [userData]);
 
-  // Atualizar os valores dos inputs dinamicamente
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setProfileData((prevData) => ({
-      ...prevData,
-      [name]: value
-    }));
+    setProfileData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  // Função para atualizar o usuário no backend utilizando POST
-  const updateUser = async (updatedData) => {
+  const updateUser = async (email, data) => {
     const response = await fetch('https://backend-engsoft.onrender.com/user/update', {
-      method: 'POST', // Alterado para POST
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(updatedData)
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, ...data })
     });
     if (!response.ok) {
-      throw new Error('Erro ao atualizar o usuário');
+      let errorMsg = 'Erro ao atualizar o usuário';
+      try {
+        const errorResponse = await response.json();
+        if (errorResponse && errorResponse.error) {
+          errorMsg = errorResponse.error;
+        }
+      } catch (err) {}
+      throw new Error(errorMsg);
     }
-    return await response.json();
+    let result = null;
+    try {
+      result = await response.json();
+    } catch (err) {}
+    return result;
   };
 
-  // Salvar as informações editadas
   const handleSave = async () => {
     if (profileData.password !== profileData.confirmPassword) {
       setFeedback({ messages: ['As senhas não coincidem!'], type: 'error' });
       return;
     }
     try {
-      const updatedUser = {
-        id: userData.id,
+      const updatedData = {
         name: profileData.name,
-        email: profileData.email,
         password: profileData.password ? profileData.password : userData.password
       };
-
-      await updateUser(updatedUser);
-      setFeedback({ messages: ['Perfil atualizado com sucesso!'], type: 'success' });
+      const result = await updateUser(profileData.email, updatedData);
+      if (result && result.error) {
+        setFeedback({ messages: ['Erro ao atualizar o perfil: ' + result.error], type: 'error' });
+      } else {
+        setFeedback({ messages: ['Perfil atualizado com sucesso!'], type: 'success' });
+      }
     } catch (err) {
       setFeedback({ messages: ['Erro ao atualizar o perfil: ' + err.message], type: 'error' });
     }
   };
 
-  // Exibir feedback de carregamento ou erro
   if (loading) {
     return <FeedbackMessage messages={[]} type="" loading={loading} />;
   }
@@ -114,7 +113,7 @@ function Editar() {
           onChange={handleChange}
           name="email"
         />
-        <h2>Senha</h2>
+        <h1>Senha</h1>
         <InputField
           label="Nova senha (deixe em branco para manter a atual)"
           type={showPassword ? 'text' : 'password'}

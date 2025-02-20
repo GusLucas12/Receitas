@@ -41,20 +41,25 @@ function Usuario() {
       <div className={styles.perfilContainer}>
         <div className={styles.perfilDetails}>
           <div className={styles.fotoNome}>
-            <div className={styles.foto}></div>
+            <div className={styles.foto}>
+
+            </div>
             <div className={styles.nomeBadge}>
               <h1>{userData ? userData.name : "Place Holder"}</h1>
               <span className={styles.badge}>Membro</span>
 
-    
+
             </div>
           </div>
-          <button className={styles.editarPerfil}>✏️</button>
-
-        </div>
-        <h1>Receitas Favoritas:</h1>
-      </div>
+          <Link to='/editar'>
+            <button className={styles.editarPerfil} title="Editar Perfil">✏️</button>
+            
+          </Link>
       
+        </div>
+   
+      </div>
+
     </div>
   );
 }

@@ -98,15 +98,7 @@ export default function LoginPage() {
             toggleVisibility={() => setShowPassword(!showPassword)}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <div className={styles.checkboxContainer}>
-            <input
-              type="checkbox"
-              checked={stayConnected}
-              onChange={() => setStayConnected(!stayConnected)}
-              className={styles.checkbox}
-            />
-            <span>Permanecer Conectado</span>
-          </div>
+       
         </div>
 
         <Button text="Entrar" onClick={handleLogin} />
