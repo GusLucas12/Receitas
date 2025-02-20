@@ -156,7 +156,7 @@ select {
 
 .addButton {
   width: 100%;
-  background-color: transparent;
+  background-color: #e63946;
   color: #fff;
   border: 0.0625rem solid #000;
   padding: 0.3125rem 0.625rem;
@@ -169,15 +169,15 @@ select {
 
 .addButton span {
   font-size: clamp(1.5rem, 2.5vw, 2.5rem);
-  color: #e63946;
+  color: #fff;
 }
 
 .addButton:hover {
-  background-color: #e63946;
+  background-color: #fff;
 }
 
 .addButton:hover span {
-  color: #fff;
+  color: #e63946;
 }
 
 .saveBtnRow {

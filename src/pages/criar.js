@@ -247,6 +247,7 @@ function Criar() {
                   }
                   className={`${styles.inputCriar} ${styles.quantityInput}`}
                 />
+                <span>.</span>
                 <div className={styles.inputWithDelete}>
                   <input
                     type="text"
@@ -275,6 +276,7 @@ function Criar() {
               onClick={addIngredient}
               className={styles.addButton}
             >
+             
               <span>+</span>
             </button>
           </div>
